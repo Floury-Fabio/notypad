@@ -1,13 +1,14 @@
 import React from 'react';
 import { signUp } from 'redux/middlewares/authMiddlewares';
 import { useInputChange } from 'customHooks/useInputChange';
+import { useDispatch } from 'react-redux';
 
 const SignUpForm = () => {
   const [input, handleInputChange] = useInputChange();
-
+  const dispatch = useDispatch();
   const submit = (e) => {
     e.preventDefault();
-    signUp(input);
+    dispatch(signUp(input));
   };
 
   return (
