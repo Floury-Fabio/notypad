@@ -1,6 +1,6 @@
 import {
   REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS,
-} from '../types/authTypes'
+} from '../types/authTypes';
 
 const request = () => (
   {
