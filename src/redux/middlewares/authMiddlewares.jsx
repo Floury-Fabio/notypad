@@ -3,7 +3,7 @@ import jwt_decode from 'jwt-decode';
 import * as authAPI from 'services/authAPI';
 import { request, loginSuccess, loginFailure } from 'redux/actions/authActions';
 
-const signUp = (email, password) => (
+const signUp = ({ email, password }) => (
   async (dispatch) => {
     dispatch(request());
     const response = await authAPI.signUp(email, password);
