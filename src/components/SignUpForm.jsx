@@ -1,14 +1,20 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { signUp } from 'redux/middlewares/authMiddlewares';
 import { useInputChange } from 'customHooks/useInputChange';
-import { useDispatch } from 'react-redux';
 
 const SignUpForm = () => {
   const [input, handleInputChange] = useInputChange();
+  const history = useHistory();
   const dispatch = useDispatch();
-  const submit = (e) => {
+
+  const submit = async (e) => {
     e.preventDefault();
-    dispatch(signUp(input));
+    const code = await dispatch(signUp(input));
+    if (code === 201) {
+      history.push('/home');
+    }
   };
 
   return (
