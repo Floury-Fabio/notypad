@@ -11,7 +11,7 @@ const request = () => (
 const loginSuccess = (decodedToken) => (
   {
     type: LOGIN_SUCCESS,
-    userType: decodedToken.scp,
+    userId: decodedToken.sub,
   }
 );
 
