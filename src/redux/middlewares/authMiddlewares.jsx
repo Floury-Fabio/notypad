@@ -22,7 +22,7 @@ const signUp = (email, password) => (
 const signIn = (email, password, type) => (
   async (dispatch) => {
     dispatch(request());
-    const response = await authAPI.signIn(email, password, type);
+    const response = await authAPI.signUp(email, password, type);
     const body = await response.json();
 
     if (response.status !== 201) {
