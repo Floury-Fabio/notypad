@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { signUp } from 'redux/middlewares/authMiddlewares'
 
 const SignUpForm = () => {
-  const submit = () => {
-
+  const [email, setEmail] = useState(null)
+  const [password, setPassword] = useState(null)
+  const submit = (e) => {
+    e.preventDefault();
+    signUp({ email, password });
   };
 
   return (
