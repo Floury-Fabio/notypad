@@ -1,14 +1,14 @@
 const signUp = ({ email, password }) => {
+  const baseURL = process.env.REACT_APP_API_URL;
+  const endUrl = '/signup.json';
+  const url = baseURL + endUrl;
+
   const data = {
     user: {
       email,
       password,
     },
   };
-
-  const baseURL = process.env.REACT_APP_API_URL;
-  const endUrl = '/signup.json';
-  const url = baseURL + endUrl;
 
   const request = {
     method: 'post',
@@ -22,16 +22,16 @@ const signUp = ({ email, password }) => {
 };
 
 const signIn = ({ email, password }) => {
+  const baseURL = process.env.REACT_APP_API_URL;
+  const endUrl = '/signup.json';
+  const url = baseURL + endUrl;
+
   const data = {
     user: {
       email,
       password,
     },
   };
-
-  const baseURL = process.env.REACT_APP_API_URL;
-  const endUrl = '/signup.json';
-  const url = baseURL + endUrl;
 
   const request = {
     method: 'post',
@@ -43,4 +43,4 @@ const signIn = ({ email, password }) => {
 
   return fetch(url, request);
 };
-export { signUp }
+export { signUp, signIn };
