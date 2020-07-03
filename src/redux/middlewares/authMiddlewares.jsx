@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie';
-import jwt_decode from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
 import * as authAPI from 'services/authAPI';
 import { request, loginSuccess, loginFailure } from 'redux/actions/authActions';
 
@@ -13,7 +13,7 @@ const signUp = ({ email, password }) => (
       dispatch(loginFailure(body.errors));
     } else {
       Cookies.set('token', response.headers.get('Authorization'), { sameSite: 'lax' });
-      const decodedToken = jwt_decode(response.headers.get('Authorization'));
+      const decodedToken = jwtDecode(response.headers.get('Authorization'));
       dispatch(loginSuccess(decodedToken));
     }
   }
@@ -29,7 +29,7 @@ const signIn = (email, password, type) => (
       dispatch(loginFailure(body.error));
     } else {
       Cookies.set('token', response.headers.get('Authorization'), { sameSite: 'lax' });
-      const decodedToken = jwt_decode(response.headers.get('Authorization'));
+      const decodedToken = jwtDecode(response.headers.get('Authorization'));
       dispatch(loginSuccess(decodedToken));
     }
   }
