@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { signUp } from 'redux/middlewares/authMiddlewares';
+import { signIn } from 'redux/middlewares/authMiddlewares';
 import { useInputChange } from 'customHooks/useInputChange';
 
 const SignInForm = () => {
@@ -11,7 +11,7 @@ const SignInForm = () => {
 
   const submit = async (e) => {
     e.preventDefault();
-    const code = await dispatch(signUp(input));
+    const code = await dispatch(signIn(input));
     if (code === 201) {
       history.push('/home');
     }
