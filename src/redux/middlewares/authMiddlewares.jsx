@@ -6,7 +6,7 @@ import { request, loginSuccess, loginFailure } from 'redux/actions/authActions';
 const signUp = ({ email, password }) => (
   async (dispatch) => {
     dispatch(request());
-    const response = await authAPI.signUp(email, password);
+    const response = await authAPI.signUp({ email, password });
     const body = await response.json();
 
     if (response.status !== 201) {
