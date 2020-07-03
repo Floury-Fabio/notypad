@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { signUp } from 'redux/middlewares/authMiddlewares'
+import { useInputChange } from 'customHooks/useInputChange';
 
 const SignUpForm = () => {
-  const [email, setEmail] = useState(null)
-  const [password, setPassword] = useState(null)
+  const [input, handleInputChange] = useInputChange();
   const submit = (e) => {
     e.preventDefault();
-    signUp({ email, password });
+    signUp(input);
   };
 
   return (
@@ -14,13 +14,13 @@ const SignUpForm = () => {
       <div className="form-group">
         <label htmlFor="email">
           Email address:
-          <input id="email" type="email" className="form-control" placeholder="Enter email" />
+          <input id="email" type="email" className="form-control" placeholder="Enter email" onChange={handleInputChange} />
         </label>
       </div>
       <div className="form-group">
         <label htmlFor="pwd">
           Password:
-          <input type="password" className="form-control" placeholder="Enter password" id="password" />
+          <input type="password" className="form-control" placeholder="Enter password" id="password" onChange={handleInputChange} />
         </label>
       </div>
       <div className="form-group form-check">
