@@ -33,6 +33,7 @@ const signIn = ({ email, password }) => (
       const decodedToken = jwtDecode(response.headers.get('Authorization'));
       dispatch(loginSuccess(decodedToken));
     }
+    return response.status;
   }
 );
 
