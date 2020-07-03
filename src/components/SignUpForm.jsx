@@ -4,16 +4,17 @@ import { useInputChange } from 'customHooks/useInputChange';
 
 const SignUpForm = () => {
   const [input, handleInputChange] = useInputChange();
+
   const submit = (e) => {
     e.preventDefault();
-    signUp(input);
+    console.log(input)
   };
 
   return (
-    <form className="form p-4 mt-3 mb-3 rounded" action="/action_page.php" onSubmit={submit}>
+    <form className="form p-4 mt-3 mb-3 rounded" onSubmit={submit}>
       <div className="form-group">
         <label htmlFor="email">
-          Email address:
+          Email add:
           <input id="email" type="email" className="form-control" placeholder="Enter email" onChange={handleInputChange} />
         </label>
       </div>
