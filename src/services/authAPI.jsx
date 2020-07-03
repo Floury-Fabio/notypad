@@ -23,7 +23,7 @@ const signUp = ({ email, password }) => {
 
 const signIn = ({ email, password }) => {
   const baseURL = process.env.REACT_APP_API_URL;
-  const endUrl = '/signup.json';
+  const endUrl = '/login.json';
   const url = baseURL + endUrl;
 
   const data = {
