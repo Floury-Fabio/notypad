@@ -20,10 +20,10 @@ const signUp = ({ email, password }) => (
   }
 );
 
-const signIn = (email, password, type) => (
+const signIn = ({ email, password }) => (
   async (dispatch) => {
     dispatch(request());
-    const response = await authAPI.signIn(email, password, type);
+    const response = await authAPI.signIn({ email, password });
     const body = await response.json();
 
     if (response.status !== 201) {
