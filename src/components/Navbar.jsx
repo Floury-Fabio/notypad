@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 const Navbar = () => {
   const dispatch = useDispatch();
   const logout = async () => {
-    const code = await dispatch(signOut(input));
+    const code = await dispatch(signOut());
     console.log(code)
   };
 
