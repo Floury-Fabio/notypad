@@ -1,14 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Cookies from 'js-cookie';
+import { Link, useHistory } from 'react-router-dom';
 import { signOut } from 'redux/middlewares/authMiddlewares';
 import { useDispatch } from 'react-redux';
 
 const Navbar = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
+
   const logout = async () => {
     const code = await dispatch(signOut());
-    console.log(code)
+    if (code === 204) {
+      history.push('/home');
+    }
   };
 
   return (
