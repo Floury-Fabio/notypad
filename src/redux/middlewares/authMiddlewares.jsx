@@ -43,15 +43,15 @@ const signOut = () => (
   async (dispatch) => {
     dispatch(request());
     const response = await authAPI.signOut();
-    const body = await response.json();
 
-    console.log(response.status)
     if (response.status !== 204) {
+      const body = await response.json();
       dispatch(requestFailure(body.error));
     } else {
       Cookies.remove('token');
       dispatch(logoutSuccess());
     }
+    return response.status;
   }
 );
 
