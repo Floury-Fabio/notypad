@@ -1,6 +1,6 @@
-import { authRefresher } from 'helpers/reducersHelpers'
+import { authRefresher } from 'helpers/reducersHelpers';
 import {
-  REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS,
+  REQUEST, LOGIN_SUCCESS, REQUEST_FAILURE, LOGOUT_SUCCESS,
 } from '../types/authTypes';
 
 const initialState = authRefresher();
@@ -19,7 +19,7 @@ const authReducer = (state = initialState, action) => {
         loading: false,
         userId: action.userId,
       };
-    case LOGIN_FAILURE:
+    case REQUEST_FAILURE:
       return {
         ...state,
         loading: false,

@@ -1,5 +1,5 @@
 import {
-  REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS,
+  REQUEST, LOGIN_SUCCESS, REQUEST_FAILURE, LOGOUT_SUCCESS,
 } from '../types/authTypes';
 
 const request = () => (
@@ -15,9 +15,9 @@ const loginSuccess = (decodedToken) => (
   }
 );
 
-const loginFailure = (error) => (
+const requestFailure = (error) => (
   {
-    type: LOGIN_FAILURE,
+    type: REQUEST_FAILURE,
     error,
   }
 );
@@ -29,5 +29,5 @@ const logoutSuccess = () => (
 );
 
 export {
-  request, loginSuccess, loginFailure, logoutSuccess,
+  request, loginSuccess, requestFailure, logoutSuccess,
 };
