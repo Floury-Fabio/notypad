@@ -6,7 +6,7 @@ const Notepads = () => {
   const userId = useSelector((state) => state.authReducer.userId);
 
   useEffect(async () => {
-    const notepads = await notepadAPI.getNotepads(userId);
+    const notepads = await notepadAPI.getNotepads({ userId });
     console.log(notepads)
   });
 
