@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie';
+
 const signUp = ({ email, password }) => {
   const baseURL = process.env.REACT_APP_API_URL;
   const endUrl = '/users.json';
@@ -43,4 +45,21 @@ const signIn = ({ email, password }) => {
 
   return fetch(url, request);
 };
-export { signUp, signIn };
+
+const signOut = () => {
+  const baseURL = process.env.REACT_APP_API_URL;
+  const endUrl = '/users/sign_out.json';
+  const url = baseURL + endUrl;
+
+  const request = {
+    method: 'delete',
+    headers: {
+      'Content-Type': 'application/jour',
+      Authorization: Cookies.get('token'),
+    },
+  };
+
+  return fetch(url, request);
+};
+
+export { signUp, signIn, signOut };
