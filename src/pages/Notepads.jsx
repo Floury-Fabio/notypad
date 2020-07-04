@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react';
 import * as notepadAPI from 'services/notepadAPI';
-import { useSelector } from 'react-redux';
 
 const Notepads = () => {
-  const userId = useSelector((state) => state.authReducer.userId);
+  const fetchNotepads = async () => {
+    const response = await notepadAPI.getNotepads();
+    console.log(await response.json())
+  };
 
-  useEffect(async () => {
-    const notepads = await notepadAPI.getNotepads();
-    console.log(notepads)
-  });
+  useEffect(() => { fetchNotepads(); }, []);
 
   return (
     <h3> Notepads </h3>
