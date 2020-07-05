@@ -8,7 +8,7 @@ const getNotepads = () => {
   const request = {
     method: 'get',
     headers: {
-      'Content-Type': 'application/jour',
+      'Content-Type': 'application/json',
       Authorization: Cookies.get('token'),
     },
   };
@@ -16,4 +16,28 @@ const getNotepads = () => {
   return fetch(url, request);
 };
 
-export { getNotepads }
+const createNotepad = ({ title, userId }) => {
+  const baseURL = process.env.REACT_APP_API_URL;
+  const endUrl = '/api/v1/notepads.json';
+  const url = baseURL + endUrl;
+
+  const data = {
+    notepad: {
+      title,
+      user_id: userId,
+    },
+  };
+
+  const request = {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: Cookies.get('token'),
+    },
+    body: JSON.stringify(data),
+  };
+
+  return fetch(url, request);
+};
+
+export { getNotepads, createNotepad };
