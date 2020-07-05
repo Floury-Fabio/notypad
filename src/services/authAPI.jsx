@@ -54,7 +54,7 @@ const signOut = () => {
   const request = {
     method: 'delete',
     headers: {
-      'Content-Type': 'application/jour',
+      'Content-Type': 'application/json',
       Authorization: Cookies.get('token'),
     },
   };
