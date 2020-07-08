@@ -11,7 +11,7 @@ const NotepadCreateModal = ({ show, onHide }) => {
 
   const createNotepad = async () => {
     await notepadAPI.createNotepad({ ...input, userId });
-    onHide()
+    onHide();
   };
 
   return (
