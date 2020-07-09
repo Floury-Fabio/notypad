@@ -10,4 +10,4 @@ const useInputChange = () => {
 
   return [input, handleInputChange];
 };
-export { useInputChange }
+export default useInputChange;

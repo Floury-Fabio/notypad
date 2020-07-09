@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Modal, Button } from 'react-bootstrap';
-import { useInputChange } from 'customHooks/useInputChange';
+import useInputChange from 'customHooks/useInputChange';
 import * as notepadAPI from 'services/notepadAPI';
 
 const NotepadCreateModal = ({ show, onHide }) => {

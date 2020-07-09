@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { signIn } from 'redux/middlewares/authMiddlewares';
-import { useInputChange } from 'customHooks/useInputChange';
+import useInputChange from 'customHooks/useInputChange';
 
 const SignInForm = () => {
   const [input, handleInputChange] = useInputChange();
