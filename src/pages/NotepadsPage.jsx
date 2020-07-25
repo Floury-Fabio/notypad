@@ -4,7 +4,7 @@ import NotepadsList from 'components/NotepadsList';
 import NotepadCreateModal from 'components/NotepadCreateModal';
 import * as notepadAPI from 'services/notepadAPI';
 
-const Notepads = () => {
+const NotepadsPage = () => {
   const [notepads, setNotepads] = useState([]);
   const [show, setShow] = useState(false);
 
@@ -36,4 +36,4 @@ const Notepads = () => {
   );
 };
 
-export default Notepads;
+export default NotepadsPage;
