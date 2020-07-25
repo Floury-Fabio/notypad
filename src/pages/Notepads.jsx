@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import * as notepadAPI from 'services/notepadAPI';
 
+import NotepadsList from 'components/NotepadsList';
 import NotepadCreateModal from 'components/NotepadCreateModal';
+import * as notepadAPI from 'services/notepadAPI';
 
 const Notepads = () => {
   const [notepads, setNotepads] = useState([]);
@@ -10,7 +11,7 @@ const Notepads = () => {
   const setupNotepadsListOrAddingInvitation = () => {
     let content;
     if (notepads.length > 0) {
-      content = <p> dedede </p>;
+      content = <NotepadsList notepads={notepads} />;
     } else {
       content = <p> You haven&apos;t notepads </p>;
     }
