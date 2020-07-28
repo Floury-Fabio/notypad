@@ -1,10 +1,16 @@
 import {
-  REQUEST, REQUEST_FAILURE,
+  REQUEST, REQUEST_SUCCESS, REQUEST_FAILURE,
 } from '../types/requestTypes';
 
 const request = () => (
   {
     type: REQUEST,
+  }
+);
+
+const requestSuccess = () => (
+  {
+    type: REQUEST_SUCCESS,
   }
 );
 
@@ -16,5 +22,5 @@ const requestFailure = (error) => (
 );
 
 export {
-  request, requestFailure,
+  request, requestSuccess, requestFailure,
 };
