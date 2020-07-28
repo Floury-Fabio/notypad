@@ -1,17 +1,25 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { Modal, Button } from 'react-bootstrap';
 import useInputChange from 'customHooks/useInputChange';
-import * as notepadAPI from 'services/notepadAPI';
+import { createNotepad } from 'redux/middlewares/notepadMiddlewares';
 
 const NotepadCreateModal = ({ show, onHide }) => {
 
   const userId = useSelector((state) => state.authReducer.userId);
+  const history = useHistory();
+  const dispatch = useDispatch();
   const [input, handleInputChange] = useInputChange();
 
-  const createNotepad = async () => {
-    await notepadAPI.createNotepad({ ...input, userId });
-    onHide();
+  const valideNotepad = async () => {
+    const code = await dispatch(createNotepad({ ...input, userId }));
+    if (code === 201) {
+      onHide();
+      history.push('/home');
+      history.push('/notepads');
+    } else {
+    }
   };
 
   return (
@@ -25,7 +33,7 @@ const NotepadCreateModal = ({ show, onHide }) => {
         <input name="title" type="text" onChange={handleInputChange} />
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={createNotepad}>Create</Button>
+        <Button onClick={valideNotepad}>Create</Button>
       </Modal.Footer>
     </Modal>
   );
