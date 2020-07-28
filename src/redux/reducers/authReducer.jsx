@@ -1,34 +1,21 @@
 import { authRefresher } from 'helpers/reducersHelpers';
 import {
-  REQUEST, LOGIN_SUCCESS, REQUEST_FAILURE, LOGOUT_SUCCESS,
+  LOGIN_SUCCESS, LOGOUT_SUCCESS,
 } from '../types/authTypes';
 
 const initialState = authRefresher();
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case REQUEST:
-      return {
-        ...state,
-        loading: true,
-      };
     case LOGIN_SUCCESS:
       return {
         ...state,
         isAuth: true,
-        loading: false,
         userId: action.userId,
-      };
-    case REQUEST_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        error: action.error,
       };
     case LOGOUT_SUCCESS:
       return {
         ...state,
-        loading: false,
         isAuth: false,
       };
     default:
