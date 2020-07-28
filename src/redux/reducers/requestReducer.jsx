@@ -1,9 +1,11 @@
-import { requestRefresher } from 'helpers/reducersHelpers';
 import {
   REQUEST, REQUEST_SUCCESS, REQUEST_FAILURE,
 } from '../types/requestTypes';
 
-const initialState = requestRefresher();
+const initialState = {
+  loading: false,
+  error: null,
+};
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
