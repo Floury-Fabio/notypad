@@ -1,24 +1,11 @@
 import {
-  REQUEST, LOGIN_SUCCESS, REQUEST_FAILURE, LOGOUT_SUCCESS,
+  LOGIN_SUCCESS, LOGOUT_SUCCESS,
 } from '../types/authTypes';
-
-const request = () => (
-  {
-    type: REQUEST,
-  }
-);
 
 const loginSuccess = (decodedToken) => (
   {
     type: LOGIN_SUCCESS,
     userId: decodedToken.sub,
-  }
-);
-
-const requestFailure = (error) => (
-  {
-    type: REQUEST_FAILURE,
-    error,
   }
 );
 
@@ -29,5 +16,5 @@ const logoutSuccess = () => (
 );
 
 export {
-  request, loginSuccess, requestFailure, logoutSuccess,
+  loginSuccess, logoutSuccess,
 };
