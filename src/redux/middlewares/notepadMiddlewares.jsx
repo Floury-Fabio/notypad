@@ -21,7 +21,6 @@ const createNotepad = ({ title, userId }) => (
     dispatch(request());
     const response = await notepadAPI.createNotepad({ title, userId });
     const body = await response.json();
-    console.log(body)
 
     if (response.status !== 201) {
       dispatch(requestFailure(body.error));
