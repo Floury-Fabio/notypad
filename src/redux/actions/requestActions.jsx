@@ -1,5 +1,5 @@
 import {
-  REQUEST, REQUEST_SUCCESS, REQUEST_FAILURE,
+  REQUEST, REQUEST_SUCCESS, REQUEST_FAILURE, CLEAN_ERROR,
 } from '../types/requestTypes';
 
 const request = () => (
@@ -21,6 +21,12 @@ const requestFailure = (error) => (
   }
 );
 
+const cleanError = () => (
+  {
+    type: CLEAN_ERROR,
+  }
+);
+
 export {
-  request, requestSuccess, requestFailure,
+  request, requestSuccess, requestFailure, cleanError,
 };
