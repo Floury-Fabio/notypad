@@ -7,7 +7,7 @@ const initialState = {
   error: null,
 };
 
-const authReducer = (state = initialState, action) => {
+const requestReducer = (state = initialState, action) => {
   switch (action.type) {
     case REQUEST:
       return {
@@ -32,4 +32,4 @@ const authReducer = (state = initialState, action) => {
   }
 };
 
-export default authReducer;
+export default requestReducer;
