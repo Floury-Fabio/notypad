@@ -33,7 +33,7 @@ const signIn = ({ email, password }) => (
     if (response.status !== 201) {
       dispatch(requestFailure(body.error));
     } else {
-      Cookies.set('token', response.headers.get('Authorization'), { sameSite: 'lax' });
+      Cookies.set('token', response.headers.get('Authorization'), { sameSite: 'Lax' });
       const decodedToken = jwtDecode(response.headers.get('Authorization'));
       dispatch(requestSuccess());
       dispatch(loginSuccess(decodedToken));
