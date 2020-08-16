@@ -9,6 +9,7 @@ const NotepadsList = ({ notepads }) => (
     <thead>
       <tr>
         <th>Title</th>
+        <th>Setting</th>
       </tr>
     </thead>
     <tbody>
