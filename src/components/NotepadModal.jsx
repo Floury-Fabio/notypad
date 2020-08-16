@@ -2,12 +2,12 @@ import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import useInputChange from 'customHooks/useInputChange';
 
-const NotepadModal = ({ show, onHide, setTitle }) => {
+const NotepadModal = ({ show, onHide, data, setData }) => {
 
   const [input, handleInputChange] = useInputChange();
 
   const valideNotepad = () => {
-    setTitle(input);
+    setData(input);
   };
 
   return (

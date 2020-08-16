@@ -12,7 +12,7 @@ const NotepadsPage = () => {
 
   const [notepads, setNotepads] = useState([]);
   const [show, setShow] = useState(false);
-  const [title, setTitle] = useState();
+  const [data, setData] = useState();
 
   const setupNotepadsListOrAddingInvitation = () => {
     let content;
@@ -31,8 +31,8 @@ const NotepadsPage = () => {
   };
 
   const validateNotepad = async () => {
-    if (title !== undefined) {
-      const code = await dispatch(createNotepad({ ...title, userId }));
+    if (data !== undefined) {
+      const code = await dispatch(createNotepad({ ...data, userId }));
       if (code === 201) {
         setShow(false);
         fetchNotepads();
@@ -41,14 +41,14 @@ const NotepadsPage = () => {
   };
 
   useEffect(() => { fetchNotepads(); }, []);
-  useEffect(() => { validateNotepad(); }, [title]);
+  useEffect(() => { validateNotepad(); }, [data]);
 
   return (
     <>
       <h3> Notepads </h3>
       {setupNotepadsListOrAddingInvitation()}
       <button type="button" className="btn btn-primary" onClick={() => setShow(true)}> New Notepad </button>
-      <NotepadModal show={show} onHide={() => setShow(false)} setTitle={setTitle} />
+      <NotepadModal show={show} onHide={() => setShow(false)} setData={setData} />
     </>
   );
 };
