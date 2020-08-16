@@ -40,4 +40,27 @@ const createNotepad = ({ title, userId }) => {
   return fetch(url, request);
 };
 
-export { getNotepads, createNotepad };
+const updateNotepad = ({ title, notepadId }) => {
+  const baseURL = process.env.REACT_APP_API_URL;
+  const endUrl = `/api/v1/notepads/${notepadId}.json`;
+  const url = baseURL + endUrl;
+
+  const data = {
+    notepad: {
+      title,
+    },
+  };
+
+  const request = {
+    method: 'patch',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: Cookies.get('token'),
+    },
+    body: JSON.stringify(data),
+  };
+
+  return fetch(url, request);
+};
+
+export { getNotepads, createNotepad, updateNotepad };
