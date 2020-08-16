@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Modal, Button } from 'react-bootstrap';
 import useInputChange from 'customHooks/useInputChange';
 
@@ -7,7 +8,7 @@ const NotepadModal = ({ show, onHide, data, setData }) => {
   const [input, handleInputChange] = useInputChange();
 
   const valideNotepad = () => {
-    setData(input);
+    setData({...input, notepadId: data.notepadId});
   };
 
   return (
@@ -18,7 +19,7 @@ const NotepadModal = ({ show, onHide, data, setData }) => {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="d-flex justify-content-center">
-        <input name="title" type="text" onChange={handleInputChange} />
+        <input name="title" type="text" onChange={handleInputChange} placeholder={data.title} />
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={valideNotepad}>Create</Button>
@@ -28,3 +29,7 @@ const NotepadModal = ({ show, onHide, data, setData }) => {
 };
 
 export default NotepadModal;
+
+NotepadModal.defaultProps = {
+  data: {},
+};
