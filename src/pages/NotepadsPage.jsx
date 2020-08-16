@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import NotepadsList from 'components/NotepadsList';
-import NotepadCreateModal from 'components/NotepadCreateModal';
+import NotepadModal from 'components/NotepadModal';
 import { createNotepad } from 'redux/middlewares/notepadMiddlewares';
 import * as notepadAPI from 'services/notepadAPI';
 
@@ -46,7 +46,7 @@ const NotepadsPage = () => {
       <h3> Notepads </h3>
       {setupNotepadsListOrAddingInvitation()}
       <button type="button" className="btn btn-primary" onClick={() => setShow(true)}> New Notepad </button>
-      <NotepadCreateModal show={show} onHide={() => setShow(false)} setTitle={setTitle} />
+      <NotepadModal show={show} onHide={() => setShow(false)} setTitle={setTitle} />
     </>
   );
 };

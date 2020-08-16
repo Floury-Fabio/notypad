@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import useInputChange from 'customHooks/useInputChange';
 
-const NotepadCreateModal = ({ show, onHide, setTitle }) => {
+const NotepadModal = ({ show, onHide, setTitle }) => {
 
   const [input, handleInputChange] = useInputChange();
 
@@ -27,4 +27,4 @@ const NotepadCreateModal = ({ show, onHide, setTitle }) => {
   );
 };
 
-export default NotepadCreateModal;
+export default NotepadModal;
