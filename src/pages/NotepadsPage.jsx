@@ -31,10 +31,12 @@ const NotepadsPage = () => {
   };
 
   const validateNotepad = async () => {
-    const code = await dispatch(createNotepad({ ...title, userId }));
-    if (code === 201) {
-      setShow(false);
-      fetchNotepads();
+    if (title !== undefined) {
+      const code = await dispatch(createNotepad({ ...title, userId }));
+      if (code === 201) {
+        setShow(false);
+        fetchNotepads();
+      }
     }
   };
 
