@@ -1,25 +1,13 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
 import { Modal, Button } from 'react-bootstrap';
 import useInputChange from 'customHooks/useInputChange';
-import { createNotepad } from 'redux/middlewares/notepadMiddlewares';
 
-const NotepadCreateModal = ({ show, onHide }) => {
+const NotepadCreateModal = ({ show, onHide, setTitle }) => {
 
-  const userId = useSelector((state) => state.authReducer.userId);
-  const history = useHistory();
-  const dispatch = useDispatch();
   const [input, handleInputChange] = useInputChange();
 
-  const valideNotepad = async () => {
-    const code = await dispatch(createNotepad({ ...input, userId }));
-    if (code === 201) {
-      onHide();
-      history.push('/home');
-      history.push('/notepads');
-    } else {
-    }
+  const valideNotepad = () => {
+    setTitle(input);
   };
 
   return (
