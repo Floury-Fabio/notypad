@@ -4,7 +4,7 @@ import { Modal, Button } from 'react-bootstrap';
 import useInputChange from 'customHooks/useInputChange';
 
 const NotepadModal = ({
-  show, onHide, data, setData 
+  show, onHide, data, setData,
 }) => {
   const [input, handleInputChange] = useInputChange();
 
@@ -33,4 +33,14 @@ export default NotepadModal;
 
 NotepadModal.defaultProps = {
   data: {},
+};
+
+NotepadModal.propTypes = {
+  show: PropTypes.bool.isRequired,
+  onHide: PropTypes.func.isRequired,
+  setData: PropTypes.func.isRequired,
+  data: PropTypes.shape({
+    notepadId: PropTypes.number,
+    title: PropTypes.string,
+  }),
 };
