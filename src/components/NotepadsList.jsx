@@ -17,6 +17,7 @@ const NotepadsList = ({ notepads }) => (
     </tbody>
   </Table>
 );
+
 export default NotepadsList;
 
 NotepadsList.propTypes = {
