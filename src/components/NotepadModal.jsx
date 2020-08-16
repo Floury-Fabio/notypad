@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { Modal, Button } from 'react-bootstrap';
 import useInputChange from 'customHooks/useInputChange';
 
-const NotepadModal = ({ show, onHide, data, setData }) => {
-
+const NotepadModal = ({
+  show, onHide, data, setData 
+}) => {
   const [input, handleInputChange] = useInputChange();
 
   const valideNotepad = () => {
-    setData({...input, notepadId: data.notepadId});
+    setData({ ...input, notepadId: data.notepadId });
   };
 
   return (
