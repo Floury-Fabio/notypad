@@ -1,5 +1,11 @@
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
+import * as notepadAPI from 'services/notepadAPI';
+
+const services = {
+  createNotepad: notepadAPI.createNotepad,
+  updateNotepad: notepadAPI.updateNotepad,
+};
 
 const authRefresher = () => {
   let initialState;
@@ -18,4 +24,4 @@ const authRefresher = () => {
   return initialState;
 };
 
-export { authRefresher };
+export { authRefresher, services };

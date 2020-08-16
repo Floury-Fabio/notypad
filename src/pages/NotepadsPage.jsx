@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import NotepadsList from 'components/NotepadsList';
 import NotepadModal from 'components/NotepadModal';
-import { createNotepad } from 'redux/middlewares/notepadMiddlewares';
+import { callAPI } from 'redux/middlewares/requestMiddlewares';
 import * as notepadAPI from 'services/notepadAPI';
 
 const NotepadsPage = () => {
@@ -32,7 +32,7 @@ const NotepadsPage = () => {
 
   const validateNotepad = async () => {
     if (data !== undefined) {
-      const code = await dispatch(createNotepad({ ...data, userId }));
+      const code = await dispatch(callAPI({ callName: 'createNotepad', args: { ...data, userId } }));
       if (code === 201) {
         setShow(false);
         fetchNotepads();
