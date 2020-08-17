@@ -13,7 +13,7 @@ const NotepadsList = ({ notepads }) => (
       </tr>
     </thead>
     <tbody>
-      {notepads.map((notepad) => <NotepadRow notepad={notepad} key={`${notepad.title}`} />)}
+      {notepads.map((notepad) => <NotepadRow notepad={notepad} key={`${notepad.title} ${notepad.id}`} />)}
     </tbody>
   </Table>
 );
