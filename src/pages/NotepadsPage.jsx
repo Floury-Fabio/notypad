@@ -32,8 +32,8 @@ const NotepadsPage = () => {
 
   const validateNotepad = async () => {
     if (data !== undefined) {
-      const code = await dispatch(callAPI({ callName: 'createNotepad', args: { ...data, userId } }));
-      if (code === 201) {
+      const response = await dispatch(callAPI({ callName: 'createNotepad', args: { ...data, userId } }));
+      if (response.status === 201) {
         setShow(false);
         fetchNotepads();
       }

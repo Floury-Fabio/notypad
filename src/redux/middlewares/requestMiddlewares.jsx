@@ -5,14 +5,14 @@ const callAPI = ({ callName, args }) => (
   async (dispatch) => {
     dispatch(request());
     const response = await services[callName](args);
-    const body = await response.json();
 
     if (response.status !== 201) {
+      const body = await response.json();
       dispatch(requestFailure(body.error));
     } else {
       dispatch(requestSuccess());
     }
-    return response.status;
+    return response;
   }
 );
 
