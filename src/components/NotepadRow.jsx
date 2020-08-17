@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import Button from 'react-bootstrap/Button';
+import { callAPI } from 'redux/middlewares/requestMiddlewares';
 import NotepadModal from 'components/NotepadModal';
 
 const NotepadRow = ({ notepad }) => {
+  const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const [data, setData] = useState({ notepadId: notepad.id, title: notepad.title });
 
   const changeTitle = async () => {
     if (data.title !== notepad.title) {
-      console.log(data)
+      const response = await dispatch(callAPI({ callName: 'updateNotepad', args: data }));
+      if (response.status === 200) {
+        setShow(false);
+      }
     }
   };
 
