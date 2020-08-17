@@ -6,6 +6,7 @@ const services = {
   getNotepads: notepadAPI.getNotepads,
   createNotepad: notepadAPI.createNotepad,
   updateNotepad: notepadAPI.updateNotepad,
+  deleteNotepad: notepadAPI.deleteNotepad,
 };
 
 const authRefresher = () => {

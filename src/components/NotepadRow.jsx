@@ -8,7 +8,13 @@ import NotepadModal from 'components/NotepadModal';
 const NotepadRow = ({ notepad }) => {
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
+  const [shouldHide, setShouldHide] = useState(false);
   const [data, setData] = useState({ notepadId: notepad.id, title: notepad.title });
+
+  const removeNotepad = async () => {
+    await dispatch(callAPI({ callName: 'deleteNotepad', args: data }));
+    setShouldHide(true);
+  };
 
   useEffect(() => {
     const changeTitle = async () => {
@@ -24,10 +30,11 @@ const NotepadRow = ({ notepad }) => {
 
   return (
     <>
-      <tr>
+      <tr className={shouldHide ? 'd-none' : ''}>
         <td>{data.title}</td>
         <td width="10%">
           <Button variant="primary" onClick={() => setShow(true)}>upd</Button>
+          <Button variant="danger" onClick={removeNotepad}>del</Button>
         </td>
       </tr>
       <NotepadModal show={show} onHide={() => setShow(false)} data={data} setData={setData} />
