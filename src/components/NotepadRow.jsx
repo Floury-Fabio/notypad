@@ -10,16 +10,17 @@ const NotepadRow = ({ notepad }) => {
   const [show, setShow] = useState(false);
   const [data, setData] = useState({ notepadId: notepad.id, title: notepad.title });
 
-  const changeTitle = async () => {
-    if (data.title !== notepad.title) {
-      const response = await dispatch(callAPI({ callName: 'updateNotepad', args: data }));
-      if (response.status === 200) {
-        setShow(false);
+  useEffect(() => {
+    const changeTitle = async () => {
+      if (data.title !== notepad.title) {
+        const response = await dispatch(callAPI({ callName: 'updateNotepad', args: data }));
+        if (response.status === 200) {
+          setShow(false);
+        }
       }
-    }
-  };
-
-  useEffect(() => { changeTitle(); }, [data]);
+    };
+    changeTitle();
+  }, [data, dispatch, notepad.title]);
 
   return (
     <>

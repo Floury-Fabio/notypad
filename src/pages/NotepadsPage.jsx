@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import NotepadsList from 'components/NotepadsList';
@@ -23,26 +23,27 @@ const NotepadsPage = () => {
     return content;
   };
 
-  const fetchNotepads = async () => {
+  const fetchNotepads = useCallback(async () => {
     const response = await dispatch(callAPI({ callName: 'getNotepads' }));
     if (response.status === 200) {
       const body = await response.json();
       setNotepads(body);
     }
-  };
+  }, [dispatch]);
 
-  const validateNotepad = async () => {
-    if (data !== undefined) {
-      const response = await dispatch(callAPI({ callName: 'createNotepad', args: { ...data, userId } }));
-      if (response.status === 201) {
-        setShow(false);
-        fetchNotepads();
+  useEffect(() => { fetchNotepads(); }, [fetchNotepads]);
+  useEffect(() => {
+    const validateNotepad = async () => {
+      if (data !== undefined) {
+        const response = await dispatch(callAPI({ callName: 'createNotepad', args: { ...data, userId } }));
+        if (response.status === 201) {
+          setShow(false);
+          fetchNotepads();
+        }
       }
-    }
-  };
-
-  useEffect(() => { fetchNotepads(); }, []);
-  useEffect(() => { validateNotepad(); }, [data]);
+    };
+    validateNotepad();
+  }, [data, dispatch, userId, fetchNotepads]);
 
   return (
     <>
