@@ -24,7 +24,7 @@ const NotepadRow = ({ notepad }) => {
   return (
     <>
       <tr>
-        <td>{notepad.title}</td>
+        <td>{data.title}</td>
         <td width="10%">
           <Button variant="primary" onClick={() => setShow(true)}>upd</Button>
         </td>
