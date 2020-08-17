@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import NotepadsList from 'components/NotepadsList';
 import NotepadModal from 'components/NotepadModal';
 import { callAPI } from 'redux/middlewares/requestMiddlewares';
-import * as notepadAPI from 'services/notepadAPI';
 
 const NotepadsPage = () => {
   const dispatch = useDispatch();
@@ -25,9 +24,11 @@ const NotepadsPage = () => {
   };
 
   const fetchNotepads = async () => {
-    const response = await notepadAPI.getNotepads();
-    const body = await response.json();
-    setNotepads(body);
+    const response = await dispatch(callAPI({ callName: 'getNotepads' }));
+    if (response.status === 200) {
+      const body = await response.json();
+      setNotepads(body);
+    }
   };
 
   const validateNotepad = async () => {

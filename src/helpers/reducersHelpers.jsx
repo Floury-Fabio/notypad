@@ -3,6 +3,7 @@ import jwtDecode from 'jwt-decode';
 import * as notepadAPI from 'services/notepadAPI';
 
 const services = {
+  getNotepads: notepadAPI.getNotepads,
   createNotepad: notepadAPI.createNotepad,
   updateNotepad: notepadAPI.updateNotepad,
 };
