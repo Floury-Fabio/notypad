@@ -52,7 +52,7 @@ const updateNotepad = ({ title, notepadId }) => {
   };
 
   const request = {
-    method: 'patch',
+    method: 'put',
     headers: {
       'Content-Type': 'application/json',
       Authorization: Cookies.get('token'),
