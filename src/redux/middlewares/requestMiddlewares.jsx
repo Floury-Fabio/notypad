@@ -6,7 +6,7 @@ const callAPI = ({ callName, args }) => (
     dispatch(request());
     const response = await services[callName](args);
 
-    if (response.status !== 201) {
+    if (response.status / 100 !== 2) {
       const body = await response.json();
       dispatch(requestFailure(body.error));
     } else {
