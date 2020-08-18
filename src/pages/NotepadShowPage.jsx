@@ -30,7 +30,7 @@ const NotesPage = () => {
           <div className="col-9 p-0">
             <div className="bg-dark h-50"> test </div>
             <div className="bg-warning h-50">
-              <RedactNote notepadId={notepadId} />
+              <RedactNote notepadId={parseInt(notepadId, 10)} />
             </div>
           </div>
         </div>
