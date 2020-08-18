@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import SignIn from 'pages/SignIn';
 import SignUp from 'pages/SignUp';
 import Home from 'pages/Home';
+import NotepadShowPage from 'pages/NotepadShowPage';
 import NotepadsPage from 'pages/NotepadsPage';
 
 import Navbar from 'components/Navbar';
@@ -17,6 +18,7 @@ const App = () => (
       <Route path="/login" component={SignIn} />
       <Route path="/register" component={SignUp} />
       <Route path="/notepads" component={NotepadsPage} />
+      <Route path="/notepad/:id" component={NotepadShowPage} />
       <Route path="/home" component={Home} />
     </Switch>
   </Router>

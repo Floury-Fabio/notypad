@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import { callAPI } from 'redux/middlewares/requestMiddlewares';
@@ -31,7 +32,11 @@ const NotepadRow = ({ notepad }) => {
   return (
     <>
       <tr className={shouldHide ? 'd-none' : ''}>
-        <td>{data.title}</td>
+        <td>
+          <Link to={`/notepad/${notepad.id}`}>
+            { data.title}
+          </Link>
+        </td>
         <td width="10%">
           <Button variant="primary" onClick={() => setShow(true)}>upd</Button>
           <Button variant="danger" onClick={removeNotepad}>del</Button>
