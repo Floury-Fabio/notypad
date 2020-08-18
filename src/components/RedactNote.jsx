@@ -1,12 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import useInputChange from 'customHooks/useInputChange';
 import { callAPI } from 'redux/middlewares/requestMiddlewares';
 
-const RedactNote = () => {
+const RedactNote = ({ notepadId }) => {
   const [input, handleInputChange] = useInputChange();
-  const { notepadId } = useParams();
   const dispatch = useDispatch();
 
   const submit = async () => {
@@ -32,3 +31,7 @@ const RedactNote = () => {
 };
 
 export default RedactNote;
+
+RedactNote.propTypes = {
+  notepadId: PropTypes.number.isRequired,
+};
