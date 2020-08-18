@@ -2,9 +2,17 @@ import React from 'react';
 
 const NotesPage = () => (
   <>
-    <div className="bg-primary"> test </div>
-    <div className="bg-secondary"> test </div>
-    <div className="bg-warning"> test </div>
+    <div id="main-container" className="container m-auto">
+      <div className="row bg-success h-100">
+        <div className="col-3 bg-secondary p-0">
+          test
+        </div>
+        <div className="col-9 p-0">
+          <div className="bg-dark h-50"> test </div>
+          <div className="bg-warning h-50"> test </div>
+        </div>
+      </div>
+    </div>
   </>
 );
 
