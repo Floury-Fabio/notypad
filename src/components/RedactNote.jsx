@@ -1,19 +1,16 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import useInputChange from 'customHooks/useInputChange';
-import * as noteAPI from 'services/noteAPI';
+import { callAPI } from 'redux/middlewares/requestMiddlewares';
 
 const RedactNote = () => {
-  const { notepadId } = useParams();
   const [input, handleInputChange] = useInputChange();
+  const { notepadId } = useParams();
+  const dispatch = useDispatch();
 
   const submit = async () => {
-    console.log('submit')
-    console.log(input)
-    console.log(notepadId)
-    const response = await noteAPI.createNote({ ...input, notepadId });
-    const body = await response.json()
-    console.log(body)
+    const response = await dispatch(callAPI({ callName: 'createNote', args: { ...input, notepadId } }));
   };
   return (
     <>

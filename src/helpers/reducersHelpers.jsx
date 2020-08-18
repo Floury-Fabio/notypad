@@ -1,12 +1,14 @@
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
 import * as notepadAPI from 'services/notepadAPI';
+import * as noteAPI from 'services/noteAPI';
 
 const services = {
   getNotepads: notepadAPI.getNotepads,
   createNotepad: notepadAPI.createNotepad,
   updateNotepad: notepadAPI.updateNotepad,
   deleteNotepad: notepadAPI.deleteNotepad,
+  createNote: noteAPI.createNote,
 };
 
 const authRefresher = () => {
