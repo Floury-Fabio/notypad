@@ -9,7 +9,7 @@ const RedactNote = ({ notepadId }) => {
   const dispatch = useDispatch();
 
   const submit = async () => {
-    const response = await dispatch(callAPI({ callName: 'createNote', args: { ...input, notepadId } }));
+    await dispatch(callAPI({ callName: 'createNote', args: { ...input, notepadId } }));
   };
   return (
     <>
