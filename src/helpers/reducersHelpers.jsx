@@ -8,6 +8,7 @@ const services = {
   createNotepad: notepadAPI.createNotepad,
   updateNotepad: notepadAPI.updateNotepad,
   deleteNotepad: notepadAPI.deleteNotepad,
+  getNotes: noteAPI.getNotes,
   createNote: noteAPI.createNote,
 };
 

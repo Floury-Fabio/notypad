@@ -1,5 +1,21 @@
 import Cookies from 'js-cookie';
 
+const getNotes = ({ notepadId }) => {
+  const baseURL = process.env.REACT_APP_API_URL;
+  const endUrl = `/api/v1/notepads/${notepadId}/notes.json`;
+  const url = baseURL + endUrl;
+
+  const request = {
+    method: 'get',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: Cookies.get('token'),
+    },
+  };
+
+  return fetch(url, request);
+};
+
 const createNote = ({ notepadId, noteTitle, content }) => {
   const baseURL = process.env.REACT_APP_API_URL;
   const endUrl = `/api/v1/notepads/${notepadId}/notes.json`;
@@ -25,4 +41,4 @@ const createNote = ({ notepadId, noteTitle, content }) => {
   return fetch(url, request);
 };
 
-export { createNote };
+export { getNotes, createNote };
