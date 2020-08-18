@@ -12,9 +12,11 @@ const NotesPage = () => {
 
   useEffect(() => {
     const fetchNotes = async () => {
-      const response = await dispatch(callAPI({ callName: 'getNotepads', args: { notepadId } }));
-      const body = await response.json();
-      setNotes(body);
+      const response = await dispatch(callAPI({ callName: 'getNotes', args: { notepadId } }));
+      if (response.status === 200) {
+        const body = await response.json();
+        setNotes(body);
+      }
     };
     fetchNotes();
   }, []);
