@@ -1,13 +1,14 @@
 import Cookies from 'js-cookie';
 
-const createNote = ({ notepadId, title, content }) => {
+const createNote = ({ notepadId, noteTitle, content }) => {
   const baseURL = process.env.REACT_APP_API_URL;
   const endUrl = `/api/v1/notepads/${notepadId}/notes.json`;
   const url = baseURL + endUrl;
 
   const data = {
-    notepad: {
-      title,
+    note: {
+      notepad_id: notepadId,
+      title: noteTitle,
       content,
     },
   };
