@@ -15,6 +15,7 @@ const NotesPage = () => {
       const response = await dispatch(callAPI({ callName: 'getNotes', args: { notepadId } }));
       if (response.status === 200) {
         const body = await response.json();
+        console.log(body)
         setNotes(body);
       }
     };
@@ -30,7 +31,7 @@ const NotesPage = () => {
           <div className="col-9 p-0">
             <div className="bg-dark h-50"> test </div>
             <div className="bg-warning h-50">
-              <RedactNote notepadId={parseInt(notepadId, 10)} />
+              <RedactNote notepadId={parseInt(notepadId, 10)} notes={notes} />
             </div>
           </div>
         </div>
