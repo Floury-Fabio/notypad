@@ -4,12 +4,15 @@ import { useDispatch } from 'react-redux';
 import useInputChange from 'customHooks/useInputChange';
 import { callAPI } from 'redux/middlewares/requestMiddlewares';
 
-const RedactNote = ({ notepadId }) => {
+const RedactNote = ({ notepadId, notes }) => {
   const [input, handleInputChange] = useInputChange();
   const dispatch = useDispatch();
 
   const submit = async () => {
-    await dispatch(callAPI({ callName: 'createNote', args: { ...input, notepadId } }));
+    const res = notes.find((note) => note.title === input.noteTitle);
+    if (res === undefined) {
+      await dispatch(callAPI({ callName: 'createNote', args: { ...input, notepadId } }));
+    }
   };
   return (
     <>
