@@ -12,6 +12,8 @@ const RedactNote = ({ notepadId, notes }) => {
     const res = notes.find((note) => note.title === input.noteTitle);
     if (res === undefined) {
       await dispatch(callAPI({ callName: 'createNote', args: { ...input, notepadId } }));
+    } else {
+      await dispatch(callAPI({ callName: 'updateNote', args: { noteId: res.id, content: input.content, notepadId } }));
     }
   };
   return (
