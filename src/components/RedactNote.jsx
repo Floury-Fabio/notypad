@@ -35,6 +35,11 @@ const RedactNote = ({ notepadId, notes }) => {
 
 export default RedactNote;
 
+RedactNote.defaultProps = {
+  notes: [],
+};
+
 RedactNote.propTypes = {
   notepadId: PropTypes.number.isRequired,
+  notes: PropTypes.arrayOf(PropTypes.object),
 };
