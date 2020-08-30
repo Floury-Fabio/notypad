@@ -64,4 +64,22 @@ const updateNote = ({ notepadId, noteId, content }) => {
   return fetch(url, request);
 };
 
-export { getNotes, createNote, updateNote };
+const deleteNote = ({ notepadId, noteId }) => {
+  const baseURL = process.env.REACT_APP_API_URL;
+  const endUrl = `/api/v1/notepads/${notepadId}/notes/${noteId}.json`;
+  const url = baseURL + endUrl;
+
+  const request = {
+    method: 'delete',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: Cookies.get('token'),
+    },
+  };
+
+  return fetch(url, request);
+};
+
+export {
+  getNotes, createNote, updateNote, deleteNote,
+};
