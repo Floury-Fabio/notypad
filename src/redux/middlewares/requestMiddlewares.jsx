@@ -16,4 +16,4 @@ const callAPI = ({ callName, args }) => (
   }
 );
 
-export { callAPI };
+export default callAPI;

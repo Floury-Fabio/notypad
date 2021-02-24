@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Button from 'react-bootstrap/Button';
-import { callAPI } from 'redux/middlewares/requestMiddlewares';
+import callAPI from 'redux/middlewares/requestMiddlewares';
 import NotepadModal from 'components/NotepadModal';
 
 const NotepadRow = ({ notepad }) => {

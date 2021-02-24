@@ -3,7 +3,7 @@ import jwtDecode from 'jwt-decode';
 import * as authAPI from 'services/authAPI';
 import { loginSuccess, logoutSuccess } from 'redux/actions/authActions';
 import { request, requestSuccess, requestFailure } from 'redux/actions/requestActions';
-import { adaptErrorMessage } from 'helpers/misc';
+import adaptErrorMessage from 'helpers/misc';
 
 const signUp = ({ email, password }) => (
   async (dispatch) => {

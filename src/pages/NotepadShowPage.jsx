@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import NotesList from 'components/NotesList';
 import RedactNote from 'components/RedactNote';
-import { callAPI } from 'redux/middlewares/requestMiddlewares';
+import callAPI from 'redux/middlewares/requestMiddlewares';
 
 const NotesPage = () => {
   const [notes, setNotes] = useState();

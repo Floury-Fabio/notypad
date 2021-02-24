@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import NotepadsList from 'components/NotepadsList';
 import NotepadModal from 'components/NotepadModal';
-import { callAPI } from 'redux/middlewares/requestMiddlewares';
+import callAPI from 'redux/middlewares/requestMiddlewares';
 
 const NotepadsPage = () => {
   const dispatch = useDispatch();

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import useInputChange from 'customHooks/useInputChange';
-import { callAPI } from 'redux/middlewares/requestMiddlewares';
+import callAPI from 'redux/middlewares/requestMiddlewares';
 
 const RedactNote = ({ notepadId, notes }) => {
   const [input, handleInputChange] = useInputChange();

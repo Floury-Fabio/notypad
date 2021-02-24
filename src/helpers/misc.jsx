@@ -20,4 +20,4 @@ const adaptErrorMessage = (errors) => {
   return message;
 };
 
-export { adaptErrorMessage };
+export default adaptErrorMessage;
