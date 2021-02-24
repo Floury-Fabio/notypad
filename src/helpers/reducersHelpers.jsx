@@ -31,4 +31,16 @@ const authRefresher = () => {
   return initialState;
 };
 
-export { authRefresher, services };
+const notepadRefresher = () => {
+  let initialState;
+  if (Cookies.get('notepads')) {
+    initialState = {
+      notepadsList: Cookies.get('notepads'),
+    };
+  } else {
+    initialState = [];
+  }
+  return initialState;
+};
+
+export { authRefresher, notepadRefresher, services };
