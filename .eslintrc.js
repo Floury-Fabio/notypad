@@ -22,6 +22,8 @@ module.exports = {
     'react',
   ],
   rules: {
+    'no-debugger': 'warn',
+    'no-unused-vars': 'warn',
   },
   settings: {
     'import/resolver': {
