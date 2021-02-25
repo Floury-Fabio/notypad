@@ -1,15 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
 import { Modal, Button } from 'react-bootstrap';
+import { getNotepads, createNotepad } from 'redux/middlewares/notepadMiddlewares';
 import useInputChange from 'customHooks/useInputChange';
 
 const NotepadModal = ({
-  show, onHide, data, setData,
+  show, onHide,
 }) => {
+  const dispatch = useDispatch();
   const [input, handleInputChange] = useInputChange();
 
-  const valideNotepad = () => {
-    setData({ ...input, notepadId: data.notepadId });
+  const userId = useSelector((state) => state.authReducer.userId);
+
+  const valideNotepad = async () => {
+    await dispatch(createNotepad({ title: input.title, userId }));
+    await dispatch(getNotepads());
   };
 
   return (
@@ -20,7 +26,7 @@ const NotepadModal = ({
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="d-flex justify-content-center">
-        <input name="title" type="text" onChange={handleInputChange} placeholder={data.title} />
+        <input name="title" type="text" onChange={handleInputChange} placeholder="title" />
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={valideNotepad}>Create</Button>
@@ -38,7 +44,6 @@ NotepadModal.defaultProps = {
 NotepadModal.propTypes = {
   show: PropTypes.bool.isRequired,
   onHide: PropTypes.func.isRequired,
-  setData: PropTypes.func.isRequired,
   data: PropTypes.shape({
     notepadId: PropTypes.number,
     title: PropTypes.string,
