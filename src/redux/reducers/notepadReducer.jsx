@@ -8,7 +8,7 @@ const notepadReducer = (state = initialState, action) => {
     case UPDATE_NOTEPADS_LIST:
       return {
         ...state,
-        notepads_list: action.notepads_list,
+        notepadsList: action.notepadsList,
       };
     default:
       return {
