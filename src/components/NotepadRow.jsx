@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Button from 'react-bootstrap/Button';
-import callAPI from 'redux/middlewares/requestMiddlewares';
+import { getNotepads, updateNotepad, destroyNotepad } from 'redux/middlewares/notepadMiddlewares';
 import NotepadModal from 'components/NotepadModal';
 
 const NotepadRow = ({ notepad }) => {
+  const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const [shouldHide, setShouldHide] = useState(false);
 
   const removeNotepad = async () => {
+    await dispatch(destroyNotepad({ NotepadID: notepad.id }));
     setShouldHide(true);
   };
 
@@ -19,7 +21,7 @@ const NotepadRow = ({ notepad }) => {
       <tr className={shouldHide ? 'd-none' : ''}>
         <td>
           <Link to={`/notepad/${notepad.id}`}>
-            { notepad.title}
+            {notepad.title}
           </Link>
         </td>
         <td width="10%">

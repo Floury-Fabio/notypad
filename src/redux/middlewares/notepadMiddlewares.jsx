@@ -54,4 +54,22 @@ const updateNotepad = ({ title, notepadId }) => async (dispatch) => {
     return false;
   }
 };
-export { getNotepads, createNotepad, updateNotepad };
+
+const destroyNotepad = ({ notepadId }) => async (dispatch) => {
+  try {
+    dispatch(request());
+    const response = await notepadAPI.destroyNotepad({ notepadId });
+    const body = await response.json();
+
+    if (!response.ok) { throw new Error(body.error); }
+
+    dispatch(requestSuccess());
+    return true;
+  } catch (errorMessage) {
+    dispatch(requestFailure(errorMessage));
+    return false;
+  }
+};
+export {
+  getNotepads, createNotepad, updateNotepad, destroyNotepad,
+};
