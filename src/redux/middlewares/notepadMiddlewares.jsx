@@ -39,4 +39,19 @@ const createNotepad = ({ title, userId }) => async (dispatch) => {
   }
 };
 
-export { getNotepads, createNotepad };
+const updateNotepad = ({ title, notepadId }) => async (dispatch) => {
+  try {
+    dispatch(request());
+    const response = await notepadAPI.updateNotepad({ title, notepadId });
+    const body = await response.json();
+
+    if (!response.ok) { throw new Error(body.error); }
+
+    dispatch(requestSuccess());
+    return true;
+  } catch (errorMessage) {
+    dispatch(requestFailure(errorMessage));
+    return false;
+  }
+};
+export { getNotepads, createNotepad, updateNotepad };
