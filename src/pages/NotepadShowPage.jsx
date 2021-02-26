@@ -12,7 +12,6 @@ const NotesPage = () => {
   const currentNotepad = useSelector((state) => state.notepadReducer.currentNotepad);
 
   const fetchCurrentNotepad = async () => {
-    debugger;
     await dispatch(showNotepad({ notepadId }));
   };
 
