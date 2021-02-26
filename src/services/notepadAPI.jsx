@@ -18,7 +18,7 @@ const getNotepads = () => {
 
 const showNotepad = ({ notepadId }) => {
   const baseURL = process.env.REACT_APP_API_URL;
-  const endUrl = `/api/v1/notepads/${notepadId}/notes.json`;
+  const endUrl = `/api/v1/notepads/${notepadId}.json`;
   const url = baseURL + endUrl;
 
   const request = {
