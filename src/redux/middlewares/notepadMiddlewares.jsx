@@ -1,8 +1,6 @@
-import Cookies from 'js-cookie';
-
 import * as notepadAPI from 'services/notepadAPI';
 import { request, requestSuccess, requestFailure } from 'redux/actions/requestActions';
-import updateNotepadsList from 'redux/actions/notepadActions';
+import { updateNotepadsList, updateCurrentNotepad } from 'redux/actions/notepadActions';
 
 const getNotepads = () => async (dispatch) => {
   try {
@@ -13,9 +11,26 @@ const getNotepads = () => async (dispatch) => {
     if (!response.ok) { throw new Error(body.error); }
 
     dispatch(updateNotepadsList(body));
-    Cookies.set('notepadsList', body, { sameSite: 'lax' });
-
     dispatch(requestSuccess());
+
+    return true;
+  } catch (errorMessage) {
+    dispatch(requestFailure(errorMessage));
+    return false;
+  }
+};
+
+const showNotepad = ({ notepadId }) => async (dispatch) => {
+  try {
+    dispatch(request());
+    const response = await notepadAPI.showNotepad({ notepadId });
+    const body = await response.json();
+
+    if (!response.ok) { throw new Error(body.error); }
+
+    dispatch(updateCurrentNotepad(body));
+    dispatch(requestSuccess());
+
     return true;
   } catch (errorMessage) {
     dispatch(requestFailure(errorMessage));
@@ -71,5 +86,5 @@ const destroyNotepad = ({ notepadId }) => async (dispatch) => {
   }
 };
 export {
-  getNotepads, createNotepad, updateNotepad, destroyNotepad,
+  getNotepads, showNotepad, createNotepad, updateNotepad, destroyNotepad,
 };

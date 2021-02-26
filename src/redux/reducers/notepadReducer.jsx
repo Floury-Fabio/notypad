@@ -1,14 +1,16 @@
-import { notepadRefresher } from 'helpers/reducersHelpers';
-import UPDATE_NOTEPADS_LIST from '../types/notepadTypes';
+import { UPDATE_NOTEPADS_LIST, UPDATE_CURRENT_NOTEPAD } from '../types/notepadTypes';
 
-const initialState = notepadRefresher();
-
-const notepadReducer = (state = initialState, action) => {
+const notepadReducer = (state = {}, action) => {
   switch (action.type) {
     case UPDATE_NOTEPADS_LIST:
       return {
         ...state,
         notepadsList: action.notepadsList,
+      };
+    case UPDATE_CURRENT_NOTEPAD:
+      return {
+        ...state,
+        currentNotepad: action.currentNotepad,
       };
     default:
       return {

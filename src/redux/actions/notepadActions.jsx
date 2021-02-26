@@ -1,4 +1,4 @@
-import UPDATE_NOTEPADS_LIST from '../types/notepadTypes';
+import { UPDATE_NOTEPADS_LIST, UPDATE_CURRENT_NOTEPAD } from '../types/notepadTypes';
 
 const updateNotepadsList = (notepadsList) => (
   {
@@ -7,4 +7,10 @@ const updateNotepadsList = (notepadsList) => (
   }
 );
 
-export default updateNotepadsList;
+const updateCurrentNotepad = (currentNotepad) => (
+  {
+    type: UPDATE_CURRENT_NOTEPAD,
+    currentNotepad,
+  }
+);
+export { updateNotepadsList, updateCurrentNotepad };

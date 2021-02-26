@@ -1,13 +1,8 @@
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
-import * as notepadAPI from 'services/notepadAPI';
 import * as noteAPI from 'services/noteAPI';
 
 const services = {
-  getNotepads: notepadAPI.getNotepads,
-  createNotepad: notepadAPI.createNotepad,
-  updateNotepad: notepadAPI.updateNotepad,
-  deleteNotepad: notepadAPI.deleteNotepad,
   getNotes: noteAPI.getNotes,
   createNote: noteAPI.createNote,
   updateNote: noteAPI.updateNote,
@@ -31,16 +26,4 @@ const authRefresher = () => {
   return initialState;
 };
 
-const notepadRefresher = () => {
-  let initialState;
-  if (Cookies.get('notepads')) {
-    initialState = {
-      notepadsList: Cookies.get('notepads'),
-    };
-  } else {
-    initialState = [];
-  }
-  return initialState;
-};
-
-export { authRefresher, notepadRefresher, services };
+export { authRefresher, services };
