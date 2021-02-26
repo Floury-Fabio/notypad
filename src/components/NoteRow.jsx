@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import callAPI from 'redux/middlewares/requestMiddlewares';
+import { showNotepad as reloadCurrentNotepad } from 'redux/middlewares/notepadMiddlewares';
+import destroyNote from 'redux/middlewares/noteMiddlewares';
 import { BsXCircle } from 'react-icons/bs';
 import { IconContext } from 'react-icons';
 
 const NoteRow = ({ note }) => {
   const dispatch = useDispatch();
   const remove = async () => {
-    await dispatch(callAPI({ callName: 'deleteNote', args: { notepadId: note.notepad_id, noteId: note.id } }));
+    const response = await dispatch(destroyNote({ notepadId: note.notepad_id, noteId: note.id }));
+    if (response) { dispatch(reloadCurrentNotepad({ notepadId: note.notepad_id })); }
   };
   return (
     <>

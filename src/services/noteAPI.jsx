@@ -64,7 +64,7 @@ const updateNote = ({ notepadId, noteId, content }) => {
   return fetch(url, request);
 };
 
-const deleteNote = ({ notepadId, noteId }) => {
+const destroyNote = ({ notepadId, noteId }) => {
   const baseURL = process.env.REACT_APP_API_URL;
   const endUrl = `/api/v1/notepads/${notepadId}/notes/${noteId}.json`;
   const url = baseURL + endUrl;
@@ -81,5 +81,5 @@ const deleteNote = ({ notepadId, noteId }) => {
 };
 
 export {
-  getNotes, createNote, updateNote, deleteNote,
+  getNotes, createNote, updateNote, destroyNote,
 };
