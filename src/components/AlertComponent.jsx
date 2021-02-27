@@ -13,7 +13,7 @@ const AlertComponent = () => {
       content = (
         <Alert variant="danger" onClose={() => dispatch(cleanError())} dismissible>
           <p>
-            {error}
+            {Object.entries(error)}
           </p>
         </Alert>
       );
