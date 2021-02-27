@@ -1,5 +1,23 @@
 import * as noteAPI from 'services/noteAPI';
 import { request, requestSuccess, requestFailure } from 'redux/actions/requestActions';
+import updateCurrentNote from 'redux/actions/noteActions';
+
+const createNote = ({ notepadId, title, content }) => async (dispatch) => {
+  try {
+    dispatch(request());
+    const response = await noteAPI.createNote({ notepadId, title, content });
+    const body = await response.json();
+
+    if (!response.ok) { throw new Error(body.error); }
+
+    dispatch(updateCurrentNote(body));
+    dispatch(requestSuccess());
+    return true;
+  } catch (errorMessage) {
+    dispatch(requestFailure(errorMessage));
+    return false;
+  }
+};
 
 const destroyNote = ({ notepadId, noteId }) => async (dispatch) => {
   try {
@@ -16,4 +34,4 @@ const destroyNote = ({ notepadId, noteId }) => async (dispatch) => {
     return false;
   }
 };
-export default destroyNote;
+export { createNote, destroyNote };
