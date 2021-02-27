@@ -20,13 +20,13 @@ const RedactNote = ({ currentNote }) => {
       <div className="form-group">
         <label htmlFor="noteTitle">
           Title
-          <input id="noteTitle" name="noteTitle" type="text" className="form-control" placeholder="Title" value={input.title} onChange={handleInputChange} />
+          <input id="noteTitle" name="noteTitle" type="text" className="form-control" placeholder="Title" defaultValue={currentNote.title} onChange={handleInputChange} />
         </label>
       </div>
       <div className="form-group">
         <label htmlFor="content">
           Content
-          <textarea id="content" name="content" className="form-control" onChange={handleInputChange} />
+          <textarea id="content" name="content" className="form-control" placeholder="Content" defaultValue={currentNote.content} onChange={handleInputChange} />
         </label>
       </div>
       <button type="submit" className="btn btn-primary" onClick={submit}>Submit</button>

@@ -1,6 +1,6 @@
 import * as noteAPI from 'services/noteAPI';
 import { request, requestSuccess, requestFailure } from 'redux/actions/requestActions';
-import updateCurrentNote from 'redux/actions/noteActions';
+import { updateCurrentNote } from 'redux/actions/noteActions';
 
 const getNote = ({ noteId, notepadId }) => async (dispatch) => {
   try {

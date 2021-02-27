@@ -1,4 +1,4 @@
-import UPDATE_CURRENT_NOTE from '../types/noteTypes';
+import { UPDATE_CURRENT_NOTE, CLEAN_CURRENT_NOTE } from '../types/noteTypes';
 
 const updateCurrentNote = (currentNote) => (
   {
@@ -6,4 +6,10 @@ const updateCurrentNote = (currentNote) => (
     currentNote,
   }
 );
-export default updateCurrentNote;
+
+const cleanCurrentNote = () => (
+  {
+    type: CLEAN_CURRENT_NOTE,
+  }
+);
+export { updateCurrentNote, cleanCurrentNote };

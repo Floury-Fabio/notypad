@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { showNotepad } from 'redux/middlewares/notepadMiddlewares';
+import { cleanCurrentNote } from 'redux/actions/noteActions';
 
 import NotesList from 'components/NotesList';
 import RedactNote from 'components/RedactNote';
@@ -17,6 +18,9 @@ const NotesPage = () => {
   };
 
   useEffect(() => { fetchCurrentNotepad(); }, []);
+  useEffect(() => () => {
+    dispatch(cleanCurrentNote());
+  }, []);
 
   return (
     <>
