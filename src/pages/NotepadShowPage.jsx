@@ -27,7 +27,7 @@ const NotesPage = () => {
               : <NotesList notes={[]} />}
           </div>
           <div className="col-9 p-0">
-            <div className="bg-dark h-50"> test </div>
+            <div className="bg-green h-50"> test </div>
             <div className="bg-warning h-50">
               {currentNotepad
                 ? <RedactNote notepadId={parseInt(notepadId, 10)} notes={currentNotepad.notes} />
