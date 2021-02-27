@@ -2,18 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import useInputChange from 'customHooks/useInputChange';
-import callAPI from 'redux/middlewares/requestMiddlewares';
+import { createNote, updateNote } from 'redux/middlewares/noteMiddlewares';
 
-const RedactNote = ({ notepadId, notes }) => {
-  const [input, handleInputChange] = useInputChange();
+const RedactNote = ({ currentNote }) => {
+  const [input, handleInputChange] = useInputChange({ ...currentNote });
   const dispatch = useDispatch();
 
   const submit = async () => {
-    const res = notes.find((note) => note.title === input.noteTitle);
-    if (res === undefined) {
-      await dispatch(callAPI({ callName: 'createNote', args: { ...input, notepadId } }));
+    if (currentNote.title === input.noteTitle) {
+      await dispatch(updateNote({ ...input }));
     } else {
-      await dispatch(callAPI({ callName: 'updateNote', args: { noteId: res.id, content: input.content, notepadId } }));
+      await dispatch(createNote({ ...input }));
     }
   };
   return (
@@ -21,7 +20,7 @@ const RedactNote = ({ notepadId, notes }) => {
       <div className="form-group">
         <label htmlFor="noteTitle">
           Title
-          <input id="noteTitle" name="noteTitle" type="text" className="form-control" placeholder="Title" onChange={handleInputChange} />
+          <input id="noteTitle" name="noteTitle" type="text" className="form-control" placeholder="Title" value={input.title} onChange={handleInputChange} />
         </label>
       </div>
       <div className="form-group">
@@ -38,10 +37,13 @@ const RedactNote = ({ notepadId, notes }) => {
 export default RedactNote;
 
 RedactNote.defaultProps = {
-  notes: [],
+  currentNote: {},
 };
 
 RedactNote.propTypes = {
-  notepadId: PropTypes.number.isRequired,
-  notes: PropTypes.arrayOf(PropTypes.object),
+  currentNote: PropTypes.shape({
+    title: PropTypes.string,
+    content: PropTypes.string,
+    notepadId: PropTypes.number,
+  }),
 };

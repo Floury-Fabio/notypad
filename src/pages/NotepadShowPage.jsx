@@ -10,6 +10,7 @@ const NotesPage = () => {
   const { notepadId } = useParams();
   const dispatch = useDispatch();
   const currentNotepad = useSelector((state) => state.notepadReducer.currentNotepad);
+  const currentNote = useSelector((state) => state.noteReducer.currentNote);
 
   const fetchCurrentNotepad = async () => {
     await dispatch(showNotepad({ notepadId }));
@@ -29,9 +30,7 @@ const NotesPage = () => {
           <div className="col-9 p-0">
             <div className="bg-green h-50"> test </div>
             <div className="bg-warning h-50">
-              {currentNotepad
-                ? <RedactNote notepadId={parseInt(notepadId, 10)} notes={currentNotepad.notes} />
-                : <RedactNote notepadId={parseInt(notepadId, 10)} notes={[]} />}
+              <RedactNote currentNote={currentNote} />
             </div>
           </div>
         </div>
