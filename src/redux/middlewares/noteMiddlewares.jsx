@@ -1,7 +1,7 @@
 import * as noteAPI from 'services/noteAPI';
 import { request, requestSuccess, requestFailure } from 'redux/actions/requestActions';
 
-const destroyNotepad = ({ notepadId, noteId }) => async (dispatch) => {
+const destroyNote = ({ notepadId, noteId }) => async (dispatch) => {
   try {
     dispatch(request());
     const response = await noteAPI.destroyNote({ notepadId, noteId });
@@ -16,4 +16,4 @@ const destroyNotepad = ({ notepadId, noteId }) => async (dispatch) => {
     return false;
   }
 };
-export default destroyNotepad;
+export default destroyNote;
