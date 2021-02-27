@@ -16,6 +16,22 @@ const getNotes = ({ notepadId }) => {
   return fetch(url, request);
 };
 
+const getNote = ({ noteId, notepadId }) => {
+  const baseURL = process.env.REACT_APP_API_URL;
+  const endUrl = `/api/v1/notepads/${notepadId}/notes/${noteId}.json`;
+  const url = baseURL + endUrl;
+
+  const request = {
+    method: 'get',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: Cookies.get('token'),
+    },
+  };
+
+  return fetch(url, request);
+};
+
 const createNote = ({ notepadId, noteTitle, content }) => {
   const baseURL = process.env.REACT_APP_API_URL;
   const endUrl = `/api/v1/notepads/${notepadId}/notes.json`;
@@ -81,5 +97,5 @@ const destroyNote = ({ notepadId, noteId }) => {
 };
 
 export {
-  getNotes, createNote, updateNote, destroyNote,
+  getNotes, getNote, createNote, updateNote, destroyNote,
 };

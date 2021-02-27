@@ -2,10 +2,10 @@ import * as noteAPI from 'services/noteAPI';
 import { request, requestSuccess, requestFailure } from 'redux/actions/requestActions';
 import updateCurrentNote from 'redux/actions/noteActions';
 
-const showNote = ({ id, notepadId }) => async (dispatch) => {
+const getNote = ({ noteId, notepadId }) => async (dispatch) => {
   try {
     dispatch(request());
-    const response = await noteAPI.showNote({ id, notepadId });
+    const response = await noteAPI.getNote({ noteId, notepadId });
     const body = await response.json();
 
     if (!response.ok) { throw new Error(body.error); }
@@ -72,5 +72,5 @@ const destroyNote = ({ notepadId, noteId }) => async (dispatch) => {
   }
 };
 export {
-  showNote, createNote, updateNote, destroyNote,
+  getNote, createNote, updateNote, destroyNote,
 };
