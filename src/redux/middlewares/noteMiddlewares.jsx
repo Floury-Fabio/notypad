@@ -10,7 +10,7 @@ const getNote = ({ noteId, notepadId }) => async (dispatch) => {
 
     if (!response.ok) { throw new Error(body.error); }
 
-    dispatch(updateCurrentNote(body));
+    dispatch(updateCurrentNote({ title: body.title, content: body.content }));
     dispatch(requestSuccess());
     return true;
   } catch (errorMessage) {
@@ -19,15 +19,15 @@ const getNote = ({ noteId, notepadId }) => async (dispatch) => {
   }
 };
 
-const createNote = ({ notepadId, title, content }) => async (dispatch) => {
+const createNote = ({ notepadId, noteTitle, content }) => async (dispatch) => {
   try {
     dispatch(request());
-    const response = await noteAPI.createNote({ notepadId, title, content });
+    const response = await noteAPI.createNote({ notepadId, noteTitle, content });
     const body = await response.json();
 
     if (!response.ok) { throw new Error(body.error); }
 
-    dispatch(updateCurrentNote(body));
+    dispatch(updateCurrentNote({ title: body.title, content: body.content }));
     dispatch(requestSuccess());
     return true;
   } catch (errorMessage) {
@@ -48,7 +48,7 @@ const updateNote = ({
 
     if (!response.ok) { throw new Error(body.error); }
 
-    dispatch(updateCurrentNote(body));
+    dispatch(updateCurrentNote({ title: body.title, content: body.content }));
     dispatch(requestSuccess());
     return true;
   } catch (errorMessage) {
