@@ -16,7 +16,7 @@ const getNotepads = () => {
   return fetch(url, request);
 };
 
-const showNotepad = ({ notepadId }) => {
+const getNotepad = ({ notepadId }) => {
   const baseURL = process.env.REACT_APP_API_URL;
   const endUrl = `/api/v1/notepads/${notepadId}.json`;
   const url = baseURL + endUrl;
@@ -96,5 +96,5 @@ const destroyNotepad = ({ notepadId }) => {
 };
 
 export {
-  getNotepads, showNotepad, createNotepad, updateNotepad, destroyNotepad,
+  getNotepads, getNotepad, createNotepad, updateNotepad, destroyNotepad,
 };

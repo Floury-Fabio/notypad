@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { createNote, updateNote } from 'redux/middlewares/noteMiddlewares';
 import { updateCurrentNote } from 'redux/actions/noteActions';
 import searchNoteWithTitle from 'helpers/notepadHelpers';
-import { showNotepad as reloadNotepad } from 'redux/middlewares/notepadMiddlewares';
+import { getNotepad as reloadNotepad } from 'redux/middlewares/notepadMiddlewares';
 
 const RedactNote = ({ currentNote, notepadId }) => {
   const dispatch = useDispatch();

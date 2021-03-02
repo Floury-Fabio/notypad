@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { showNotepad } from 'redux/middlewares/notepadMiddlewares';
+import { getNotepad } from 'redux/middlewares/notepadMiddlewares';
 import { cleanCurrentNote } from 'redux/actions/noteActions';
 
 import NotesList from 'components/NotesList';
@@ -14,7 +14,7 @@ const NotesPage = () => {
   const currentNote = useSelector((state) => state.noteReducer.currentNote);
 
   const fetchCurrentNotepad = async () => {
-    await dispatch(showNotepad({ notepadId }));
+    await dispatch(getNotepad({ notepadId }));
   };
 
   useEffect(() => { fetchCurrentNotepad(); }, []);

@@ -20,10 +20,10 @@ const getNotepads = () => async (dispatch) => {
   }
 };
 
-const showNotepad = ({ notepadId }) => async (dispatch) => {
+const getNotepad = ({ notepadId }) => async (dispatch) => {
   try {
     dispatch(request());
-    const response = await notepadAPI.showNotepad({ notepadId });
+    const response = await notepadAPI.getNotepad({ notepadId });
     const body = await response.json();
 
     if (!response.ok) { throw new Error(body.error); }
@@ -86,5 +86,5 @@ const destroyNotepad = ({ notepadId }) => async (dispatch) => {
   }
 };
 export {
-  getNotepads, showNotepad, createNotepad, updateNotepad, destroyNotepad,
+  getNotepads, getNotepad, createNotepad, updateNotepad, destroyNotepad,
 };

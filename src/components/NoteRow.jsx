@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { showNotepad as reloadCurrentNotepad } from 'redux/middlewares/notepadMiddlewares';
+import { getNotepad as reloadCurrentNotepad } from 'redux/middlewares/notepadMiddlewares';
 import { getNote as reloadCurrentNote, destroyNote } from 'redux/middlewares/noteMiddlewares';
 
 import { BsXCircle } from 'react-icons/bs';
