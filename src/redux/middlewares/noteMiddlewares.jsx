@@ -19,10 +19,10 @@ const getNote = ({ noteId, notepadId }) => async (dispatch) => {
   }
 };
 
-const createNote = ({ notepadId, noteTitle, content }) => async (dispatch) => {
+const createNote = ({ notepadId, title, content }) => async (dispatch) => {
   try {
     dispatch(request());
-    const response = await noteAPI.createNote({ notepadId, noteTitle, content });
+    const response = await noteAPI.createNote({ notepadId, title, content });
     const body = await response.json();
 
     if (!response.ok) { throw new Error(body.error); }

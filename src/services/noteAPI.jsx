@@ -32,7 +32,7 @@ const getNote = ({ noteId, notepadId }) => {
   return fetch(url, request);
 };
 
-const createNote = ({ notepadId, noteTitle, content }) => {
+const createNote = ({ notepadId, title, content }) => {
   const baseURL = process.env.REACT_APP_API_URL;
   const endUrl = `/api/v1/notepads/${notepadId}/notes.json`;
   const url = baseURL + endUrl;
@@ -40,7 +40,7 @@ const createNote = ({ notepadId, noteTitle, content }) => {
   const data = {
     note: {
       notepad_id: notepadId,
-      title: noteTitle,
+      title,
       content,
     },
   };
@@ -57,9 +57,9 @@ const createNote = ({ notepadId, noteTitle, content }) => {
   return fetch(url, request);
 };
 
-const updateNote = ({ notepadId, noteId, content }) => {
+const updateNote = ({ notepadId, id, content }) => {
   const baseURL = process.env.REACT_APP_API_URL;
-  const endUrl = `/api/v1/notepads/${notepadId}/notes/${noteId}.json`;
+  const endUrl = `/api/v1/notepads/${notepadId}/notes/${id}.json`;
   const url = baseURL + endUrl;
 
   const data = {

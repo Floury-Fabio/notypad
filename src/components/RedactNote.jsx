@@ -1,39 +1,43 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import useInputChange from 'customHooks/useInputChange';
 import { createNote, updateNote } from 'redux/middlewares/noteMiddlewares';
 import { updateCurrentNote } from 'redux/actions/noteActions';
+import searchNoteWithTitle from 'helpers/notepadHelpers';
+import { showNotepad as reloadNotepad } from 'redux/middlewares/notepadMiddlewares';
 
 const RedactNote = ({ currentNote, notepadId }) => {
-  const [input, handleInputChange] = useInputChange({ ...currentNote });
   const dispatch = useDispatch();
 
   const submit = async () => {
-    if (currentNote.title === input.noteTitle) {
-      await dispatch(updateNote({ notepadId, ...input }));
+    const foundedNoteId = await searchNoteWithTitle(currentNote.title, notepadId);
+    if (foundedNoteId) {
+      await dispatch(updateNote({ notepadId, id: foundedNoteId, ...currentNote }));
     } else {
-      await dispatch(createNote({ notepadId, ...input }));
+      await dispatch(createNote({ notepadId, ...currentNote }));
     }
+    dispatch(reloadNotepad({ notepadId }));
   };
 
-  useEffect(() => {
-    dispatch(updateCurrentNote({ title: input.title, content: input.content }));
-  },
-  [input]);
+  const saveInput = (e) => {
+    dispatch(updateCurrentNote({
+      ...currentNote,
+      [e.currentTarget.name]: e.currentTarget.value,
+    }));
+  };
 
   return (
     <>
       <div className="form-group">
-        <label htmlFor="noteTitle">
+        <label htmlFor="title">
           Title
-          <input id="noteTitle" name="noteTitle" type="text" className="form-control" placeholder="Title" value={currentNote.title} onChange={handleInputChange} />
+          <input id="title" name="title" type="text" className="form-control" placeholder="Title" value={currentNote.title} onChange={saveInput} />
         </label>
       </div>
       <div className="form-group">
         <label htmlFor="content">
           Content
-          <textarea id="content" name="content" className="form-control" placeholder="Content" value={currentNote.content} onChange={handleInputChange} />
+          <textarea id="content" name="content" className="form-control" placeholder="Content" value={currentNote.content} onChange={saveInput} />
         </label>
       </div>
       <button type="submit" className="btn btn-primary" onClick={submit}>Submit</button>
