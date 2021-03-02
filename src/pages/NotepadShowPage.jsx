@@ -6,6 +6,7 @@ import { cleanCurrentNote } from 'redux/actions/noteActions';
 
 import NotesList from 'components/NotesList';
 import RedactNote from 'components/RedactNote';
+import NoteDisplay from 'components/NoteDisplay';
 
 const NotesPage = () => {
   const { notepadId } = useParams();
@@ -32,7 +33,7 @@ const NotesPage = () => {
               : <NotesList notes={[]} />}
           </div>
           <div className="col-9 p-0">
-            <div className="bg-green h-50"> test </div>
+            <NoteDisplay currentNote={currentNote} />
             <div className="bg-warning h-50">
               <RedactNote currentNote={currentNote} notepadId={notepadId} />
             </div>
