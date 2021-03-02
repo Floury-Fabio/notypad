@@ -27,7 +27,7 @@ const RedactNote = ({ currentNote, notepadId }) => {
   };
 
   return (
-    <>
+    <div className="bg-warning h-50">
       <div className="form-group">
         <label htmlFor="title">
           Title
@@ -41,7 +41,7 @@ const RedactNote = ({ currentNote, notepadId }) => {
         </label>
       </div>
       <button type="submit" className="btn btn-primary" onClick={submit}>Submit</button>
-    </>
+    </div>
   );
 };
 

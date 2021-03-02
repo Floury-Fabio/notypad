@@ -34,9 +34,7 @@ const NotesPage = () => {
           </div>
           <div className="col-9 p-0">
             <NoteDisplay currentNote={currentNote} />
-            <div className="bg-warning h-50">
-              <RedactNote currentNote={currentNote} notepadId={notepadId} />
-            </div>
+            <RedactNote currentNote={currentNote} notepadId={notepadId} />
           </div>
         </div>
       </div>
