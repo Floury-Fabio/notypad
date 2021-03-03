@@ -9,6 +9,7 @@ import NotepadsPage from 'pages/NotepadsPage';
 
 import Navbar from 'components/Navbar';
 import AlertComponent from 'components/AlertComponent';
+import PrivateRoute from './PrivateRoute';
 
 const App = () => (
   <Router>
@@ -17,9 +18,11 @@ const App = () => (
     <Switch>
       <Route path="/login" component={SignIn} />
       <Route path="/register" component={SignUp} />
-      <Route path="/notepads" component={NotepadsPage} />
-      <Route path="/notepad/:notepadId" component={NotepadShowPage} />
       <Route path="/home" component={Home} />
+      <PrivateRoute>
+        <Route path="/notepads" component={NotepadsPage} />
+        <Route path="/notepad/:notepadId" component={NotepadShowPage} />
+      </PrivateRoute>
     </Switch>
   </Router>
 );

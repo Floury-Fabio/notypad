@@ -19,6 +19,7 @@ const authRefresher = () => {
     const decodedToken = jwtDecode(Cookies.get('token'));
     initialState = {
       userId: decodedToken.sub,
+      exp: decodedToken.exp,
       isAuth: true,
     };
   }

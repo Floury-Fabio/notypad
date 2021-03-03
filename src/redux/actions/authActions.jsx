@@ -6,6 +6,7 @@ const loginSuccess = (decodedToken) => (
   {
     type: LOGIN_SUCCESS,
     userId: decodedToken.sub,
+    exp: decodedToken.exp,
   }
 );
 
