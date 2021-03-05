@@ -27,7 +27,6 @@ const signIn = ({ email, password }) => {
   const baseURL = process.env.REACT_APP_API_URL;
   const endUrl = '/users/sign_in.json';
   const url = baseURL + endUrl;
-  console.log(baseURL, url);
 
   const data = {
     user: {
