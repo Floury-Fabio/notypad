@@ -3,5 +3,5 @@
   "env": {
     "serverUrl": "http://localhost:3000"
   },
-  "ignoreTestFiles": ["**/examples/*"]
+  "ignoreTestFiles": ["**/examples/*", "**/e2e/*"]
 }
