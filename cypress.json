@@ -1,8 +1,0 @@
-{
-  "baseUrl": "http://localhost:8000",
-  "env": {
-    "serverUrl": "http://localhost:3000"
-  },
-  "video": "false"
-  "ignoreTestFiles": ["**/examples/*", "**/e2e/*"]
-}

@@ -1,12 +1,12 @@
 describe('SignIn e2e', () => {
   beforeEach(() => {
-    const serverUrl = Cypress.env('apiUrl');
-    cy.request('post', `${serverUrl}/api/v1/test/reset_database`);
+    const apiUrl = Cypress.env('apiUrl');
+    cy.request('post', `${apiUrl}/api/v1/test/reset_database`);
     cy.fixture('users/user').as('fakeUser').then((fakeUser) => {
       const fakeData = {
         user: fakeUser,
       };
-      cy.request('post', `${serverUrl}/api/v1/test/create_fake_user`, fakeData);
+      cy.request('post', `${apiUrl}/api/v1/test/create_fake_user`, fakeData);
     });
   });
 
