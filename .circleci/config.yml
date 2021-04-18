@@ -1,17 +1,17 @@
 version: 2.1
-  jobs:
-    e2e_tests:
-      machine:
-        image: ubuntu-2004:202010-01
-      steps:
-        - checkout
-        - run:
-            name: Perform end-to-end tests.
-            command: |
-              cd e2e
-              docker-compose up --exit-code-from cypress
-        - store_artifacts:
-            path: e2e/cypress/screenshots
+jobs:
+  e2e_tests:
+    machine:
+      image: ubuntu-2004:202010-01
+    steps:
+      - checkout
+      - run:
+          name: Perform end-to-end tests.
+          command: |
+            cd e2e
+            docker-compose up --exit-code-from cypress
+      - store_artifacts:
+          path: e2e/cypress/screenshots
 workflows:
   build:
     jobs:
