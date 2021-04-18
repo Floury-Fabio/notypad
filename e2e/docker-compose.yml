@@ -1,0 +1,37 @@
+version: "3.9"
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: 'password'
+  api:
+    image: flouryfabio/notypad_api:latest
+    command: bash -c "rm -f tmp/pids/server.pid && rails db:create db:test:prepare && bundle exec rails s -e test -p 3000 -b '0.0.0.0'"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - "db"
+    environment:
+      - HOST=db
+      - USERNAME=postgres
+      - PASSWORD=password
+      - DEVISE_SECRET_KEY=fake_key
+  front:
+    build: ../
+    ports:
+      - "8000:8000"
+    depends_on:
+      - "api"
+    environment:
+      - PORT=8000
+      - REACT_APP_API_URL=http://api:3000
+  cypress:
+    image: "cypress/included:6.8.0"
+    depends_on:
+      - front
+    environment:
+      - CYPRESS_apiUrl=http://api:3000
+      - CYPRESS_baseUrl=http://front:8000
+    working_dir: /e2e
+    volumes:
+      - ./:/e2e
