@@ -1,3 +1,21 @@
+describe('signIn command', () => {
+  beforeEach(() => {
+    cy.resetDb();
+    cy.visit('/home');
+    cy.fixture('users/user').as('fakeUser').then((fakeUser) => {
+      cy.createUser(fakeUser);
+      cy.signIn(fakeUser.email, fakeUser.password);
+    });
+  });
+
+  it('sign correctly', () => {
+    cy.window().its('store').invoke('getState').should('to.nested.include', { 'authReducer.isAuth': true });
+    cy.getCookie('token').then((cookie) => {
+      expect(cookie.value).not.to.be.undefined; // eslint-disable-line no-unused-expressions
+    });
+  });
+});
+
 describe('signIn action', () => {
   beforeEach(() => {
     cy.resetDb();

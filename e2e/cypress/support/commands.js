@@ -26,6 +26,8 @@
 //
 //
 
+import Cookies from 'js-cookie';
+import jwtDecode from 'jwt-decode';
 import fakeUserFixture from '../fixtures/users/user.json';
 
 Cypress.Commands.add('resetDb', () => {
@@ -39,4 +41,20 @@ Cypress.Commands.add('createUser', (fakeUser = fakeUserFixture) => {
     user: fakeUser,
   };
   cy.request('post', `${apiUrl}/api/v1/test/create_fake_user`, fakeData);
+});
+
+Cypress.Commands.add('signIn', (email, password) => {
+  const apiUrl = Cypress.env('apiUrl');
+  const fakeData = {
+    user: {
+      email,
+      password,
+    },
+  };
+  cy.request('post', `${apiUrl}/users/sign_in`, fakeData).then((response) => {
+    const token = response.headers.authorization;
+    Cookies.set('token', token, { sameSite: 'Lax' });
+    const decodedToken = jwtDecode(token);
+    cy.window().its('store').invoke('dispatch', { type: 'LOGIN_SUCCESS', userId: decodedToken.sub, exp: decodedToken.exp });
+  });
 });
