@@ -23,3 +23,20 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+//
+//
+
+import fakeUserFixture from '../fixtures/users/user.json';
+
+Cypress.Commands.add('resetDb', () => {
+  const apiUrl = Cypress.env('apiUrl');
+  cy.request('post', `${apiUrl}/api/v1/test/reset_database`);
+});
+
+Cypress.Commands.add('createUser', (fakeUser = fakeUserFixture) => {
+  const apiUrl = Cypress.env('apiUrl');
+  const fakeData = {
+    user: fakeUser,
+  };
+  cy.request('post', `${apiUrl}/api/v1/test/create_fake_user`, fakeData);
+});
