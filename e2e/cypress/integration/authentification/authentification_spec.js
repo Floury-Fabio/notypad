@@ -1,7 +1,6 @@
 describe('signIn command', () => {
   beforeEach(() => {
     cy.resetDb();
-    cy.visit('/home');
     cy.fixture('users/user').as('fakeUser').then((fakeUser) => {
       cy.createUser(fakeUser);
       cy.signIn(fakeUser.email, fakeUser.password);

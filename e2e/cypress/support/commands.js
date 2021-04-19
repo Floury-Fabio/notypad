@@ -30,13 +30,13 @@ import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
 import fakeUserFixture from '../fixtures/users/user.json';
 
+const apiUrl = Cypress.env('apiUrl');
+
 Cypress.Commands.add('resetDb', () => {
-  const apiUrl = Cypress.env('apiUrl');
   cy.request('post', `${apiUrl}/api/v1/test/reset_database`);
 });
 
 Cypress.Commands.add('createUser', (fakeUser = fakeUserFixture) => {
-  const apiUrl = Cypress.env('apiUrl');
   const fakeData = {
     user: fakeUser,
   };
@@ -44,7 +44,6 @@ Cypress.Commands.add('createUser', (fakeUser = fakeUserFixture) => {
 });
 
 Cypress.Commands.add('signIn', (email, password) => {
-  const apiUrl = Cypress.env('apiUrl');
   const fakeData = {
     user: {
       email,
@@ -52,9 +51,28 @@ Cypress.Commands.add('signIn', (email, password) => {
     },
   };
   cy.request('post', `${apiUrl}/users/sign_in`, fakeData).then((response) => {
+    cy.visit('/home');
     const token = response.headers.authorization;
     Cookies.set('token', token, { sameSite: 'Lax' });
     const decodedToken = jwtDecode(token);
     cy.window().its('store').invoke('dispatch', { type: 'LOGIN_SUCCESS', userId: decodedToken.sub, exp: decodedToken.exp });
+  });
+});
+
+Cypress.Commands.add('createNotepads', (fakeNotepads, userId) => {
+  fakeNotepads.forEach((fakeNotepad) => {
+    cy.request({
+      method: 'post',
+      url: `${apiUrl}/api/v1/notepads`,
+      headers: {
+        authorization: Cookies.get('token'),
+      },
+      body: {
+        notepad: {
+          title: fakeNotepad.title,
+          user_id: userId,
+        },
+      },
+    });
   });
 });
