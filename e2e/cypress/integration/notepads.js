@@ -21,3 +21,18 @@ describe('get all notepads action', () => {
     cy.get('table').should('contain', this.fakeNotepads[2].title);
   });
 });
+
+describe('create notepad action', () => {
+  beforeEach(() => {
+    cy.fixture('notepads/notepads').as('fakeNotepads');
+  });
+
+  it.only('create a notepad correctly', function createTest() {
+    cy.visit('/notepads');
+    cy.contains('New Notepad').click();
+    cy.get('#notepad-title-input').type(this.fakeNotepads[0].title);
+    cy.contains('Create').click();
+
+    cy.get('table').should('contain', this.fakeNotepads[0].title);
+  });
+});

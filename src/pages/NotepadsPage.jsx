@@ -23,7 +23,7 @@ const NotepadsPage = () => {
         ? <NotepadsList notepads={notepadsList} />
         : <p> You haven&apos;t notepads </p>}
       <button type="button" className="btn btn-primary" onClick={() => setShow(true)}> New Notepad </button>
-      <NotepadModal show={show} onHide={() => setShow(false)} />
+      <NotepadModal show={show} setShow={setShow} onHide={() => setShow(false)} />
     </>
   );
 };

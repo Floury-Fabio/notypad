@@ -6,7 +6,7 @@ import { getNotepads, createNotepad } from 'redux/middlewares/notepadMiddlewares
 import useInputChange from 'customHooks/useInputChange';
 
 const NotepadModal = ({
-  show, onHide,
+  show, setShow, onHide,
 }) => {
   const dispatch = useDispatch();
   const [input, handleInputChange] = useInputChange();
@@ -16,6 +16,7 @@ const NotepadModal = ({
   const valideNotepad = async () => {
     await dispatch(createNotepad({ title: input.title, userId }));
     await dispatch(getNotepads());
+    setShow(false);
   };
 
   return (
@@ -26,7 +27,7 @@ const NotepadModal = ({
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="d-flex justify-content-center">
-        <input name="title" type="text" onChange={handleInputChange} placeholder="title" />
+        <input name="title" id="notepad-title-input" type="text" onChange={handleInputChange} placeholder="title" />
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={valideNotepad}>Create</Button>
@@ -43,6 +44,7 @@ NotepadModal.defaultProps = {
 
 NotepadModal.propTypes = {
   show: PropTypes.bool.isRequired,
+  setShow: PropTypes.func.isRequired,
   onHide: PropTypes.func.isRequired,
   data: PropTypes.shape({
     notepadId: PropTypes.number,
