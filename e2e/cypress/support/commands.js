@@ -76,3 +76,38 @@ Cypress.Commands.add('createNotepads', (fakeNotepads, userId) => {
     });
   });
 });
+
+Cypress.Commands.add('createNotepad', (fakeNotepad) => {
+  cy.window().its('store').invoke('getState').then((reducerState) => {
+    cy.request({
+      method: 'post',
+      url: `${apiUrl}/api/v1/notepads`,
+      headers: {
+        authorization: Cookies.get('token'),
+      },
+      body: {
+        notepad: {
+          title: fakeNotepad.title,
+          user_id: reducerState.authReducer.userId,
+        },
+      },
+    });
+  });
+});
+
+Cypress.Commands.add('createNote', ({ notepadId, title, content }) => {
+  cy.request({
+    method: 'post',
+    url: `${apiUrl}/api/v1/notepads/${notepadId}/notes`,
+    headers: {
+      authorization: Cookies.get('token'),
+    },
+    body: {
+      note: {
+        notepad_id: notepadId,
+        title,
+        content,
+      },
+    },
+  });
+});
