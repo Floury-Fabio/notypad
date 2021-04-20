@@ -24,3 +24,16 @@ describe('get notepad', () => {
     });
   });
 });
+
+describe('create note', () => {
+  it('create note correctly', function getNotes() {
+    cy.visit(`/notepad/${this.notepadId}`);
+    cy.get('#note-title-input').type('banana');
+    cy.get('#note-content-input').type('banana is good');
+    cy.get('#submit').click();
+
+    cy.get('ul').should('contain', 'banana');
+    cy.get('#note-title-display').should('contain', 'banana');
+    cy.get('#note-content-display').should('contain', 'banana is good');
+  });
+});
