@@ -56,3 +56,16 @@ describe('update note action', () => {
     cy.get('#note-content-display').should('contain', 'banana is good');
   });
 });
+
+describe('delete note action', () => {
+  it('delete note correctly', function updateNote() {
+    this.fakeNotes.forEach((fakeNote) => {
+      cy.createNote({ ...fakeNote, ...{ notepadId: this.notepadId } });
+    });
+
+    cy.visit(`/notepad/${this.notepadId}`);
+    cy.get('.list-group > li:nth-child(2) > div:last-child').click();
+
+    cy.get('ul .list-group-item').should('have.length', this.fakeNotes.length - 1);
+  });
+});
