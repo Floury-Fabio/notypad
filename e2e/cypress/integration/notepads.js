@@ -38,7 +38,7 @@ describe('create notepad action', () => {
 });
 
 describe('update notepad action', () => {
-  beforeEach(function preparenot() {
+  beforeEach(function prepare() {
     cy.fixture('notepads/notepads').as('fakeNotepads').then((fakeNotepads) => {
       cy.createNotepads(fakeNotepads, this.reducerState.authReducer.userId);
     });
@@ -51,5 +51,20 @@ describe('update notepad action', () => {
     cy.get('#validate-btn').click();
 
     cy.get('table').should('contain', 'banana');
+  });
+});
+
+describe('delete notepad action', () => {
+  beforeEach(function prepare() {
+    cy.fixture('notepads/notepads').as('fakeNotepads').then((fakeNotepads) => {
+      cy.createNotepads(fakeNotepads, this.reducerState.authReducer.userId);
+    });
+  });
+
+  it('delete a notepad correctly', function deleteTest() {
+    cy.visit('/notepads');
+    cy.get('tbody tr [id^=delete-btn]').first().click();
+
+    cy.get('tbody [class=""]').should('have.length', this.fakeNotepads.length - 1);
   });
 });
