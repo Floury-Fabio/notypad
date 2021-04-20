@@ -51,11 +51,15 @@ Cypress.Commands.add('signIn', (email, password) => {
     },
   };
   cy.request('post', `${apiUrl}/users/sign_in`, fakeData).then((response) => {
-    cy.visit('/home');
-    const token = response.headers.authorization;
-    Cookies.set('token', token, { sameSite: 'Lax' });
-    const decodedToken = jwtDecode(token);
-    cy.window().its('store').invoke('dispatch', { type: 'LOGIN_SUCCESS', userId: decodedToken.sub, exp: decodedToken.exp });
+    cy.url().then((url) => {
+      if (url === 'about:blank') {
+        cy.visit('/home'); // we need to be on app to have access to reducers
+      }
+      const token = response.headers.authorization;
+      Cookies.set('token', token, { sameSite: 'Lax' });
+      const decodedToken = jwtDecode(token);
+      cy.window().its('store').invoke('dispatch', { type: 'LOGIN_SUCCESS', userId: decodedToken.sub, exp: decodedToken.exp });
+    });
   });
 });
 
