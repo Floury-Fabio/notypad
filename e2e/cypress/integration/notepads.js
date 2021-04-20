@@ -27,12 +27,29 @@ describe('create notepad action', () => {
     cy.fixture('notepads/notepads').as('fakeNotepads');
   });
 
-  it.only('create a notepad correctly', function createTest() {
+  it('create a notepad correctly', function createTest() {
     cy.visit('/notepads');
     cy.contains('New Notepad').click();
     cy.get('#notepad-title-input').type(this.fakeNotepads[0].title);
-    cy.contains('Create').click();
+    cy.get('#validate-btn').click();
 
     cy.get('table').should('contain', this.fakeNotepads[0].title);
+  });
+});
+
+describe('update notepad action', () => {
+  beforeEach(function preparenot() {
+    cy.fixture('notepads/notepads').as('fakeNotepads').then((fakeNotepads) => {
+      cy.createNotepads(fakeNotepads, this.reducerState.authReducer.userId);
+    });
+  });
+
+  it('update a notepad correctly', () => {
+    cy.visit('/notepads');
+    cy.get('tbody tr [id^=update-btn]').first().click();
+    cy.get('#notepad-title-input').type('banana');
+    cy.get('#validate-btn').click();
+
+    cy.get('table').should('contain', 'banana');
   });
 });
