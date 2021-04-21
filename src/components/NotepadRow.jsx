@@ -12,7 +12,7 @@ const NotepadRow = ({ notepad }) => {
   const [shouldHide, setShouldHide] = useState(false);
 
   const removeNotepad = async () => {
-    await dispatch(destroyNotepad({ NotepadID: notepad.id }));
+    await dispatch(destroyNotepad({ notepadId: notepad.id }));
     setShouldHide(true);
   };
 
@@ -25,14 +25,16 @@ const NotepadRow = ({ notepad }) => {
           </Link>
         </td>
         <td width="10%">
-          <Button variant="primary" onClick={() => setShow(true)}>upd</Button>
-          <Button variant="danger" onClick={removeNotepad}>del</Button>
+          <Button id={`update-btn-${notepad.id}`} variant="primary" onClick={() => setShow(true)}>upd</Button>
+          <Button id={`delete-btn-${notepad.id}`} variant="danger" onClick={removeNotepad}>del</Button>
         </td>
       </tr>
       <NotepadModal
         show={show}
+        setShow={setShow}
         onHide={() => setShow(false)}
         oldTitle={notepad.title}
+        action="update"
         notepadId={notepad.id}
       />
     </>

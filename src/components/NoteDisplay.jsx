@@ -5,12 +5,12 @@ import MarkdownView from 'react-showdown';
 const NoteDisplay = ({ currentNote }) => (
   <div className="container bg-green h-50">
     <div className="row">
-      <p>
+      <p id="note-title-display">
         {currentNote.title}
       </p>
     </div>
     <div className="row">
-      <p>
+      <p id="note-content-display">
         <MarkdownView markdown={currentNote.content} />
       </p>
     </div>

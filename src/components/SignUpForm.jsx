@@ -22,13 +22,13 @@ const SignUpForm = () => {
       <div className="form-group">
         <label htmlFor="email">
           Email address:
-          <input id="email" name="email" type="email" className="form-control" placeholder="Enter email" onChange={handleInputChange} />
+          <input id="email" name="email" type="email" data-test="email" className="form-control" placeholder="Enter email" onChange={handleInputChange} />
         </label>
       </div>
       <div className="form-group">
         <label htmlFor="pwd">
           Password:
-          <input id="password" name="password" type="password" className="form-control" placeholder="Enter password" onChange={handleInputChange} />
+          <input id="password" name="password" type="password" data-test="password" className="form-control" placeholder="Enter password" onChange={handleInputChange} />
         </label>
       </div>
       <div className="form-group form-check">
@@ -37,7 +37,7 @@ const SignUpForm = () => {
           Remember me
         </label>
       </div>
-      <button type="submit" className="btn btn-primary">Submit</button>
+      <button type="submit" data-test="submit" className="btn btn-primary">Submit</button>
     </form>
   );
 };
