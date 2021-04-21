@@ -29,7 +29,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "e2e": "cypress run --project ./e2e",
-    "docker-compose": "docker-compose -f e2e/docker-compose.yml up --exit-code-from cypress",
+    "docker-compose-build": "docker-compose -f e2e/docker-compose.yml build",
+    "docker-compose-up": "docker-compose -f e2e/docker-compose.yml up --exit-code-from cypress",
     "eject": "react-scripts eject"
   },
   "browserslist": {
