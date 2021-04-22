@@ -15,10 +15,7 @@ const signUp = ({ email, password }) => (
       const error = adaptErrorMessage(body.errors);
       dispatch(requestFailure(error));
     } else {
-      Cookies.set('token', response.headers.get('Authorization'), { sameSite: 'lax' });
-      const decodedToken = jwtDecode(response.headers.get('Authorization'));
-      dispatch(requestSuccess());
-      dispatch(loginSuccess(decodedToken));
+      dispatch(requestSuccess('A mail is sended'));
     }
     return response.status;
   }
