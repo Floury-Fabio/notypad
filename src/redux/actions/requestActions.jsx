@@ -1,10 +1,17 @@
 import {
-  REQUEST, REQUEST_SUCCESS, REQUEST_FAILURE, CLEAN_ERROR, CLEAN_NOTICE,
+  REQUEST, REQUEST_SUCCESS, REQUEST_FAILURE, CLEAN_ERROR, CLEAN_NOTICE, NOTIFY,
 } from '../types/requestTypes';
 
 const request = () => (
   {
     type: REQUEST,
+  }
+);
+
+const notify = (notice) => (
+  {
+    type: NOTIFY,
+    notice,
   }
 );
 
@@ -35,5 +42,5 @@ const cleanNotice = () => (
 );
 
 export {
-  request, requestSuccess, requestFailure, cleanError, cleanNotice,
+  request, requestSuccess, requestFailure, cleanError, cleanNotice, notify,
 };

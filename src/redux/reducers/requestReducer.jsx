@@ -1,5 +1,5 @@
 import {
-  REQUEST, REQUEST_SUCCESS, REQUEST_FAILURE, CLEAN_ERROR, CLEAN_NOTICE,
+  REQUEST, REQUEST_SUCCESS, REQUEST_FAILURE, CLEAN_ERROR, CLEAN_NOTICE, NOTIFY,
 } from '../types/requestTypes';
 
 const initialState = {
@@ -14,6 +14,11 @@ const requestReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
+      };
+    case NOTIFY:
+      return {
+        ...state,
+        notice: action.notice,
       };
     case REQUEST_SUCCESS:
       return {
@@ -30,7 +35,7 @@ const requestReducer = (state = initialState, action) => {
     case CLEAN_NOTICE:
       return {
         ...state,
-        error: null,
+        notice: null,
       };
     case CLEAN_ERROR:
       return {
