@@ -2,20 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { Modal, Button } from 'react-bootstrap';
-import { getNotepads, createNotepad } from 'redux/middlewares/notepadMiddlewares';
+import { getNotepads, createNotepad, updateNotepad } from 'redux/middlewares/notepadMiddlewares';
 import useInputChange from 'customHooks/useInputChange';
 
 const NotepadModal = ({
-  show, onHide,
+  show, setShow, onHide, action, notepadId,
 }) => {
   const dispatch = useDispatch();
   const [input, handleInputChange] = useInputChange();
 
   const userId = useSelector((state) => state.authReducer.userId);
 
-  const valideNotepad = async () => {
-    await dispatch(createNotepad({ title: input.title, userId }));
+  const validateNotepad = async () => {
+    if (action === 'create') { await dispatch(createNotepad({ title: input.title, userId })); }
+    if (action === 'update') { await dispatch(updateNotepad({ title: input.title, notepadId })); }
     await dispatch(getNotepads());
+    setShow(false);
   };
 
   return (
@@ -26,10 +28,10 @@ const NotepadModal = ({
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="d-flex justify-content-center">
-        <input name="title" type="text" onChange={handleInputChange} placeholder="title" />
+        <input name="title" id="notepad-title-input" type="text" onChange={handleInputChange} placeholder="title" />
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={valideNotepad}>Create</Button>
+        <Button id="validate-btn" onClick={validateNotepad}>{action}</Button>
       </Modal.Footer>
     </Modal>
   );
@@ -39,11 +41,15 @@ export default NotepadModal;
 
 NotepadModal.defaultProps = {
   data: {},
+  notepadId: null,
 };
 
 NotepadModal.propTypes = {
   show: PropTypes.bool.isRequired,
+  setShow: PropTypes.func.isRequired,
   onHide: PropTypes.func.isRequired,
+  action: PropTypes.string.isRequired,
+  notepadId: PropTypes.number,
   data: PropTypes.shape({
     notepadId: PropTypes.number,
     title: PropTypes.string,

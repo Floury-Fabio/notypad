@@ -74,9 +74,8 @@ const destroyNotepad = ({ notepadId }) => async (dispatch) => {
   try {
     dispatch(request());
     const response = await notepadAPI.destroyNotepad({ notepadId });
-    const body = await response.json();
 
-    if (!response.ok) { throw new Error(body.error); }
+    if (!response.ok) { throw new Error('delete has fail'); }
 
     dispatch(requestSuccess());
     return true;
