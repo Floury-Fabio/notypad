@@ -4,6 +4,7 @@ import * as authAPI from 'services/authAPI';
 import { loginSuccess, logoutSuccess } from 'redux/actions/authActions';
 import { request, requestSuccess, requestFailure } from 'redux/actions/requestActions';
 import adaptErrorMessage from 'helpers/misc';
+import i18n from 'services/i18n';
 
 const signUp = ({ email, password }) => (
   async (dispatch) => {
@@ -15,7 +16,7 @@ const signUp = ({ email, password }) => (
       const error = adaptErrorMessage(body.errors);
       dispatch(requestFailure(error));
     } else {
-      dispatch(requestSuccess('A mail is sended'));
+      dispatch(requestSuccess(i18n.t('confirmation_mail_send')));
     }
     return response.status;
   }
