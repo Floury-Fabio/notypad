@@ -1,5 +1,5 @@
 import {
-  REQUEST, REQUEST_SUCCESS, REQUEST_FAILURE, CLEAN_ERROR,
+  REQUEST, REQUEST_SUCCESS, REQUEST_FAILURE, CLEAN_ERROR, CLEAN_NOTICE,
 } from '../types/requestTypes';
 
 const request = () => (
@@ -8,9 +8,10 @@ const request = () => (
   }
 );
 
-const requestSuccess = () => (
+const requestSuccess = (notice = null) => (
   {
     type: REQUEST_SUCCESS,
+    notice,
   }
 );
 
@@ -27,6 +28,12 @@ const cleanError = () => (
   }
 );
 
+const cleanNotice = () => (
+  {
+    type: CLEAN_NOTICE,
+  }
+);
+
 export {
-  request, requestSuccess, requestFailure, cleanError,
+  request, requestSuccess, requestFailure, cleanError, cleanNotice,
 };
