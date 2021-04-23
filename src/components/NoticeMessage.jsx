@@ -11,7 +11,7 @@ const NoticeMessage = () => {
     notice
     && (
     <>
-      <Alert variant="success" onClose={() => dispatch(cleanNotice())} dismissible>
+      <Alert id="noticeMessage" variant="success" onClose={() => dispatch(cleanNotice())} dismissible>
         <p>
           {notice}
         </p>
