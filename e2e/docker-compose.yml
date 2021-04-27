@@ -16,6 +16,7 @@ services:
       - USERNAME=postgres
       - PASSWORD=password
       - DEVISE_SECRET_KEY=fake_key
+      - SENDER_EMAIL=fake@mail.com
   front:
     build: ../
     ports:
