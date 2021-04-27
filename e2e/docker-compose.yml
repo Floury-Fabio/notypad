@@ -16,6 +16,7 @@ services:
       - USERNAME=postgres
       - PASSWORD=password
       - DEVISE_SECRET_KEY=fake_key
+      - SENDER_EMAIL=fake@mail.com
   front:
     build: ../
     ports:
@@ -29,7 +30,7 @@ services:
     image: "cypress/included:6.8.0"
     depends_on:
       - front
-    entrypoint: bash -c "npm install js-cookie && npm install jwt-decode && cypress run"
+    entrypoint: bash -c "npm install js-cookie && npm install react-i18next i18next --save && npm install jwt-decode && cypress run"
     environment:
       - CYPRESS_apiUrl=http://api:3000
       - CYPRESS_baseUrl=http://front:8000
