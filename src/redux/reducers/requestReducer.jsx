@@ -1,5 +1,5 @@
 import {
-  REQUEST, REQUEST_SUCCESS, REQUEST_FAILURE, CLEAN_ERROR, CLEAN_NOTICE, NOTIFY,
+  REQUEST, REQUEST_SUCCESS, REQUEST_FAILURE, CLEAN_ERROR, CLEAN_NOTICE, NOTIFY, DISPLAY_ERROR,
 } from '../types/requestTypes';
 
 const initialState = {
@@ -19,6 +19,11 @@ const requestReducer = (state = initialState, action) => {
       return {
         ...state,
         notice: action.notice,
+      };
+    case DISPLAY_ERROR:
+      return {
+        ...state,
+        error: action.error,
       };
     case REQUEST_SUCCESS:
       return {

@@ -1,16 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { signIn } from 'redux/middlewares/authMiddlewares';
+import { displayError } from 'redux/actions/requestActions';
 import useInputChange from 'customHooks/useInputChange';
+import ReCAPTCHA from 'react-google-recaptcha';
+import i18n from 'services/i18n';
 
 const SignInForm = () => {
   const [input, handleInputChange] = useInputChange();
+  const [captchaValue, setCaptchaValue] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const validCaptcha = (value) => {
+    setCaptchaValue(value);
+  };
+
   const submit = async (e) => {
     e.preventDefault();
+    if (!captchaValue) {
+      dispatch(displayError(i18n.t('captchaValidation')));
+      return;
+    }
+
     const code = await dispatch(signIn(input));
     if (code === 201) {
       history.push('/home');
@@ -37,6 +50,10 @@ const SignInForm = () => {
           Remember me
         </label>
       </div>
+      <ReCAPTCHA
+        sitekey={process.env.REACT_APP_CAPTCHA_KEY}
+        onChange={validCaptcha}
+      />
       <button type="submit" data-test="submit" className="btn btn-primary">Submit</button>
     </form>
   );
