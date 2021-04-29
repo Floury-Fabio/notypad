@@ -19,7 +19,7 @@ const SignUpForm = () => {
 
   const submit = async (e) => {
     e.preventDefault();
-    if (!captchaValue) {
+    if (!captchaValue && !window.Cypress) {
       dispatch(displayError(i18n.t('captchaValidation')));
       return;
     }
