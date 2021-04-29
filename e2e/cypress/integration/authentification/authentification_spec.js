@@ -1,4 +1,4 @@
-import i18n from '../../../i18n'
+import i18n from '../../../i18n';
 
 describe('signIn command', () => {
   beforeEach(() => {
@@ -45,7 +45,7 @@ describe('SignUp action', () => {
     cy.fixture('users/user').as('fakeUser');
   });
 
-  it.only('Validates successful signUp', function it() {
+  it('Validates successful signUp', function it() {
     cy.visit('/register');
     cy.get('[data-test=email]').type(this.fakeUser.email);
     cy.get('[data-test=password]').type(this.fakeUser.password);
