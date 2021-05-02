@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import { destroyNotepad, getNotepads as reloadCurrentNotepads } from 'redux/middlewares/notepadMiddlewares';
+
 import NotepadModal from 'components/NotepadModal';
+import PencilIcon from 'components/PencilIcon';
+import TrashIcon from 'components/TrashIcon';
+
+import { destroyNotepad, getNotepads as reloadCurrentNotepads } from 'redux/middlewares/notepadMiddlewares';
 import notepadImage from 'assets/notepadImage2.png';
 
 const NotepadCard = ({ notepad }) => {
@@ -19,7 +23,7 @@ const NotepadCard = ({ notepad }) => {
 
   return (
     <>
-      <Card className="bg-secondary border-0 mb-4" style={{ 'max-width': '18rem', 'min-width': '18rem' }}>
+      <Card className="bg-secondary border-0 mb-4" style={{ maxWidth: '18rem', minWidth: '18rem' }}>
         <Link to={`/notepad/${notepad.id}`}>
           <Card.Img variant="top" src={notepadImage} />
         </Link>
@@ -27,12 +31,27 @@ const NotepadCard = ({ notepad }) => {
           <Card.Text className="text-center">
             { notepad.title }
           </Card.Text>
+
           <div className="d-flex justify-content-center">
-            <Button id={`update-btn-${notepad.id}`} variant="primary" onClick={() => setShow(true)}>upd</Button>
-            <Button id={`delete-btn-${notepad.id}`} variant="danger" onClick={removeNotepad}>del</Button>
+            <PencilIcon
+              notepadId={notepad.id}
+              button
+              size={2}
+              setShow={setShow}
+            />
+            <TrashIcon
+              id={`delete-btn-${notepad.id}`}
+              button
+              color="red"
+              notepadId={notepad.id}
+              size={2}
+              removeNotepad={removeNotepad}
+            />
           </div>
+
         </Card.Body>
       </Card>
+
       <NotepadModal
         show={show}
         setShow={setShow}
