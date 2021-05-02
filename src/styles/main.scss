@@ -21,3 +21,9 @@
   height :100vh;
 }
 
+
+$theme-colors: (
+  "secondary": #e0e0e0,
+);
+
+@import '~bootstrap/scss/bootstrap.scss';

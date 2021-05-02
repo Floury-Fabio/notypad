@@ -16,7 +16,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-sm bg-light">
+    <nav className="navbar navbar-expand-sm bg-secondary">
       <ul className="navbar-nav">
         <li className="nav-item">
           <Link to="/home" className="nav-link"> Home </Link>
