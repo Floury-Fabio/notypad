@@ -11,7 +11,7 @@ const ErrorMessage = () => {
     error
     && (
     <>
-      <Alert variant="success" onClose={() => dispatch(cleanError())} dismissible>
+      <Alert variant="danger" onClose={() => dispatch(cleanError())} dismissible>
         <p>
           {error}
         </p>

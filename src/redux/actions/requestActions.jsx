@@ -1,5 +1,5 @@
 import {
-  REQUEST, REQUEST_SUCCESS, REQUEST_FAILURE, CLEAN_ERROR, CLEAN_NOTICE, NOTIFY,
+  REQUEST, REQUEST_SUCCESS, REQUEST_FAILURE, CLEAN_ERROR, CLEAN_NOTICE, NOTIFY, DISPLAY_ERROR,
 } from '../types/requestTypes';
 
 const request = () => (
@@ -12,6 +12,13 @@ const notify = (notice) => (
   {
     type: NOTIFY,
     notice,
+  }
+);
+
+const displayError = (error) => (
+  {
+    type: DISPLAY_ERROR,
+    error,
   }
 );
 
@@ -42,5 +49,5 @@ const cleanNotice = () => (
 );
 
 export {
-  request, requestSuccess, requestFailure, cleanError, cleanNotice, notify,
+  request, requestSuccess, requestFailure, cleanError, cleanNotice, notify, displayError,
 };

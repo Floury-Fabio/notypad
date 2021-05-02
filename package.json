@@ -17,6 +17,7 @@
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
+    "react-google-recaptcha": "^2.1.0",
     "react-i18next": "^11.8.13",
     "react-icons": "^3.11.0",
     "react-redux": "^7.2.0",
@@ -31,7 +32,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "cypress": "cypress open --project ./e2e",
-    "e2eTest": "cypress run --project ./e2e",
+    "e2e-tests": "cypress run --project ./e2e",
     "docker-compose-build": "docker-compose -f e2e/docker-compose.yml build",
     "docker-compose-up": "docker-compose -f e2e/docker-compose.yml up --exit-code-from cypress",
     "eject": "react-scripts eject"
