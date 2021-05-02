@@ -1,21 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Table from 'react-bootstrap/Table';
+import CardDeck from 'react-bootstrap/CardDeck';
 
-import NotepadRow from 'components/NotepadRow';
+import NotepadCard from 'components/NotepadCard';
 
 const NotepadsList = ({ notepads }) => (
-  <Table striped bordered hover>
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Setting</th>
-      </tr>
-    </thead>
-    <tbody>
-      {notepads.map((notepad) => <NotepadRow notepad={notepad} key={`${notepad.title} ${notepad.id}`} />)}
-    </tbody>
-  </Table>
+  <CardDeck className="justify-content-center mr-0">
+    {notepads.map((notepad) => <NotepadCard notepad={notepad} key={`${notepad.title} ${notepad.id}`} />)}
+  </CardDeck>
 );
 
 export default NotepadsList;
