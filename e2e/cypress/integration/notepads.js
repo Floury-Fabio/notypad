@@ -17,9 +17,9 @@ describe('Notepad actions', () => {
 
     it('shows all notepads', function getAllNotepadTest() {
       cy.visit('/notepads');
-      cy.get('table').should('contain', this.fakeNotepads[0].title);
-      cy.get('table').should('contain', this.fakeNotepads[1].title);
-      cy.get('table').should('contain', this.fakeNotepads[2].title);
+      cy.get('.card-deck').should('contain', this.fakeNotepads[0].title);
+      cy.get('.card-deck').should('contain', this.fakeNotepads[1].title);
+      cy.get('.card-deck').should('contain', this.fakeNotepads[2].title);
     });
   });
 
@@ -34,7 +34,7 @@ describe('Notepad actions', () => {
       cy.get('#notepad-title-input').type(this.fakeNotepads[0].title);
       cy.get('#validate-btn').click();
 
-      cy.get('table').should('contain', this.fakeNotepads[0].title);
+      cy.get('.card-deck').should('contain', this.fakeNotepads[0].title);
     });
   });
 
@@ -47,11 +47,11 @@ describe('Notepad actions', () => {
 
     it('update a notepad correctly', () => {
       cy.visit('/notepads');
-      cy.get('tbody tr [id^=update-btn]').first().click();
+      cy.get('[id^=update-btn]').first().click();
       cy.get('#notepad-title-input').type('banana');
       cy.get('#validate-btn').click();
 
-      cy.get('table').should('contain', 'banana');
+      cy.get('.card-deck').should('contain', 'banana');
     });
   });
 
@@ -64,9 +64,9 @@ describe('Notepad actions', () => {
 
     it('delete a notepad correctly', function deleteTest() {
       cy.visit('/notepads');
-      cy.get('tbody tr [id^=delete-btn]').first().click();
+      cy.get('[id^=delete-btn]').first().click();
 
-      cy.get('tbody [class=""]').should('have.length', this.fakeNotepads.length - 1);
+      cy.get('.card').should('have.length', this.fakeNotepads.length - 1);
     });
   });
 });
