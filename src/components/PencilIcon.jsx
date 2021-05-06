@@ -7,7 +7,7 @@ const PencilIcon = ({
   notepadId, color, size, setShow, button,
 }) => (
   <IconContext.Provider value={{ color, size: `${size}em`, className: 'global-class-name' }}>
-    <TiPencil className="mr-3" type={button ? 'button' : ''} id={`update-btn-${notepadId}`} onClick={() => setShow(true)} />
+    <TiPencil type={button ? 'button' : ''} id={`update-btn-${notepadId}`} onClick={() => setShow(true)} />
   </IconContext.Provider>
 );
 

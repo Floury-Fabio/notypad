@@ -7,7 +7,7 @@ const TrashIcon = ({
   notepadId, color, size, removeNotepad, button,
 }) => (
   <IconContext.Provider value={{ color, size: `${size}em`, className: 'global-class-name' }}>
-    <BsFillTrashFill className="ml-3" type={button ? 'button' : ''} id={`delete-btn-${notepadId}`} onClick={() => removeNotepad()} />
+    <BsFillTrashFill type={button ? 'button' : ''} id={`delete-btn-${notepadId}`} onClick={() => removeNotepad()} />
   </IconContext.Provider>
 );
 
