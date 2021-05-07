@@ -28,6 +28,7 @@ services:
       - REACT_APP_API_URL=http://api:3000
       - REACT_APP_CAPTCHA_KEY=6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
   cypress:
+    ipc: host
     image: "cypress/included:6.8.0"
     depends_on:
       - front
