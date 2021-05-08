@@ -27,7 +27,7 @@ const RedactNote = ({ currentNote, notepadId }) => {
   };
 
   return (
-    <div className="bg-warning h-50">
+    <div className="h-50 bg-secondary mt-2 rounded p-2">
       <div className="form-group">
         <label htmlFor="title">
           Title

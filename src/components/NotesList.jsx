@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import NoteRow from 'components/NoteRow';
 
 const NotesList = ({ notes }) => (
-  <ul className="list-group">
+  <ul className="w-25 bg-secondary list-group rounded p-1">
     {notes.map((note) => <NoteRow note={note} key={`${note.title} ${note.id}`} />)}
   </ul>
 );

@@ -25,17 +25,13 @@ const NotesPage = () => {
 
   return (
     <>
-      <div id="main-container" className="container m-auto">
-        <div className="row bg-success h-100">
-          <div className="col-3 bg-secondary p-0">
-            {currentNotepad
-              ? <NotesList notes={currentNotepad.notes} />
-              : <NotesList notes={[]} />}
-          </div>
-          <div className="col-9 p-0">
-            <NoteDisplay currentNote={currentNote} />
-            <RedactNote currentNote={currentNote} notepadId={notepadId} />
-          </div>
+      <div id="main-container" className="container d-flex p-0 mt-3">
+        {currentNotepad
+          ? <NotesList notes={currentNotepad.notes} />
+          : <NotesList notes={[]} />}
+        <div className="w-75 ml-4 rounded">
+          <NoteDisplay currentNote={currentNote} />
+          <RedactNote currentNote={currentNote} notepadId={notepadId} />
         </div>
       </div>
     </>
