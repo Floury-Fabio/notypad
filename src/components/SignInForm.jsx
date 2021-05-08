@@ -52,7 +52,7 @@ const SignInForm = () => {
         </label>
       </div>
       <ReCAPTCHA
-        sitekey={process.env.REACT_APP_CAPTCHA_KEY}
+        sitekey="fsfs"
         onChange={validCaptcha}
       />
       <button type="submit" data-test="submit" className="btn btn-primary">Submit</button>
