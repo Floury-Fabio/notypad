@@ -12,6 +12,7 @@ const SignInForm = () => {
   const [captchaValue, setCaptchaValue] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
+  console.log(process.env.REACT_APP_CAPTCHA_KEY);
 
   const validCaptcha = (value) => {
     setCaptchaValue(value);
