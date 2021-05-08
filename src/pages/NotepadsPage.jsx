@@ -18,11 +18,13 @@ const NotepadsPage = () => {
 
   return (
     <>
-      <h3> Notepads </h3>
+      <h3 className="text-center"> Notepads </h3>
       {notepadsList && notepadsList.length > 0
         ? <NotepadsList notepads={notepadsList} />
         : <p> You haven&apos;t notepads </p>}
-      <button type="button" className="btn btn-primary" onClick={() => setShow(true)}> New Notepad </button>
+      <div className="d-flex justify-content-center">
+        <button type="button" className="btn btn-primary" onClick={() => setShow(true)}> New Notepad </button>
+      </div>
       <NotepadModal show={show} setShow={setShow} onHide={() => setShow(false)} action="create" />
     </>
   );
