@@ -25,7 +25,7 @@ const NoteRow = ({ note }) => {
 
   return (
     <>
-      <li className="list-group-item d-flex justify-content-between">
+      <li className="list-group-item d-flex justify-content-between rounded mt-1">
         <div role="button" tabIndex="-1" onClick={selectNote} onKeyDown={selectNote}>
           {note.title}
         </div>
