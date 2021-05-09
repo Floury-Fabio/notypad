@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import 'styles/ColorBox.scss';
 
 const ColorBox = ({ color, setColor }) => {
   const swapColor = (event) => {
