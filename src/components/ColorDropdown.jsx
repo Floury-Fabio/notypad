@@ -6,15 +6,11 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import ColorBox from 'components/ColorBox';
 import ColorMenu from 'components/ColorMenu';
 
-const ColorDropdown = ({ setColor }) => {
-  const colors = [
-    'blue',
-    'green',
-    'red',
-    'yellow',
-    'orange',
-    'cyan',
-  ];
+import notepadImages from 'helpers/notepadImages';
+
+const ColorDropdown = ({ notepadId }) => {
+  const colors = Object.keys(notepadImages);
+
   return (
     <Dropdown className="d-flex justify-content-center ">
       <Dropdown.Toggle />
@@ -23,8 +19,8 @@ const ColorDropdown = ({ setColor }) => {
           <Dropdown.Item
             as={ColorBox}
             color={color}
-            setColor={setColor}
             key={color}
+            notepadId={notepadId}
           />
         ))}
       </Dropdown.Menu>
@@ -35,5 +31,5 @@ const ColorDropdown = ({ setColor }) => {
 export default ColorDropdown;
 
 ColorDropdown.propTypes = {
-  setColor: PropTypes.func.isRequired,
+  notepadId: PropTypes.number.isRequired,
 };

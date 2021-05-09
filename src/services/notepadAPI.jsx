@@ -56,13 +56,14 @@ const createNotepad = ({ title, userId }) => {
   return fetch(url, request);
 };
 
-const updateNotepad = ({ title, notepadId }) => {
+const updateNotepad = ({ color, notepadId, title }) => {
   const baseURL = process.env.REACT_APP_API_URL;
   const endUrl = `/api/v1/notepads/${notepadId}.json`;
   const url = baseURL + endUrl;
 
   const data = {
     notepad: {
+      color,
       title,
     },
   };
