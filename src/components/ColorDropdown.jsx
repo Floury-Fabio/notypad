@@ -13,7 +13,7 @@ const ColorDropdown = ({ notepadId }) => {
 
   return (
     <Dropdown className="d-flex justify-content-center ">
-      <Dropdown.Toggle />
+      <Dropdown.Toggle data-test="color-dropdown" />
       <Dropdown.Menu as={ColorMenu}>
         {colors.map((color) => (
           <Dropdown.Item

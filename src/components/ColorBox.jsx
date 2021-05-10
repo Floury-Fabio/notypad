@@ -18,13 +18,14 @@ const ColorBox = ({ notepadId, color }) => {
   return (
     <div className="color-box-outside" style={{ backgroundColor: color }}>
       <div
-        className="color-box-inside"
         aria-label="swapColor"
-        tabIndex="0"
-        role="button"
-        type="button"
+        className="color-box-inside"
+        date-test={`${color}-box`}
         onClick={swapColor}
         onKeyDown={swapColor}
+        role="button"
+        tabIndex="0"
+        type="button"
       />
     </div>
   );
