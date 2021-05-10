@@ -69,4 +69,24 @@ describe('Notepad actions', () => {
       cy.get('.card').should('have.length', this.fakeNotepads.length - 1);
     });
   });
+
+  describe('swap color of notepad', () => {
+    beforeEach(function updateTest() {
+      cy.fixture('notepads/notepads').as('fakeNotepads').then((fakeNotepads) => {
+        cy.createNotepads(fakeNotepads, this.reducerState.authReducer.userId);
+      });
+    });
+
+    it('change the image of notepad', () => {
+      cy.visit('/notepads');
+      cy.intercept('/notepads.json').as('getNotepads');
+      cy.get('.card').first().as('card');
+      cy.get('@card').find('[data-test=color-dropdown]').click();
+      cy.get('@card').find('[date-test=green-box]').click();
+
+      cy.wait('@getNotepads').then(() => {
+        cy.get('@card').find('.card-img-top').should('have.attr', 'src').and('include', 'green');
+      });
+    });
+  });
 });
