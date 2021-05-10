@@ -18,7 +18,7 @@ const NotesList = ({ notes }) => {
       <ul className="list-group w-100">
         {notes.map((note) => <NoteRow note={note} key={`${note.title} ${note.id}`} />)}
       </ul>
-      <button id="submit" type="submit" className="btn btn-primary mt-auto ml-auto mb-2" onClick={resetNote}>reset</button>
+      <button id="reset" type="submit" className="btn btn-primary mt-auto ml-auto mb-2" onClick={resetNote}>reset</button>
     </div>
   );
 };
