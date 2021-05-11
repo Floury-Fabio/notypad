@@ -8,14 +8,14 @@ const getNotepads = () => async (dispatch) => {
     const response = await notepadAPI.getNotepads();
     const body = await response.json();
 
-    if (!response.ok) { throw new Error(body.error); }
+    if (!response.ok) { throw new Error(body); }
 
     dispatch(updateNotepadsList(body));
     dispatch(requestSuccess());
 
     return true;
-  } catch (errorMessage) {
-    dispatch(requestFailure(errorMessage));
+  } catch (error) {
+    dispatch(requestFailure(error.message));
     return false;
   }
 };
@@ -26,14 +26,14 @@ const getNotepad = ({ notepadId }) => async (dispatch) => {
     const response = await notepadAPI.getNotepad({ notepadId });
     const body = await response.json();
 
-    if (!response.ok) { throw new Error(body.error); }
+    if (!response.ok) { throw new Error(body); }
 
     dispatch(updateCurrentNotepad(body));
     dispatch(requestSuccess());
 
     return true;
-  } catch (errorMessage) {
-    dispatch(requestFailure(errorMessage));
+  } catch (error) {
+    dispatch(requestFailure(error.message));
     return false;
   }
 };
@@ -44,12 +44,12 @@ const createNotepad = ({ title, userId }) => async (dispatch) => {
     const response = await notepadAPI.createNotepad({ title, userId });
     const body = await response.json();
 
-    if (!response.ok) { throw new Error(body.error); }
+    if (!response.ok) { throw new Error(body); }
 
     dispatch(requestSuccess());
     return true;
-  } catch (errorMessage) {
-    dispatch(requestFailure(errorMessage));
+  } catch (error) {
+    dispatch(requestFailure(error.message));
     return false;
   }
 };
@@ -60,12 +60,12 @@ const updateNotepad = ({ title, notepadId }) => async (dispatch) => {
     const response = await notepadAPI.updateNotepad({ title, notepadId });
     const body = await response.json();
 
-    if (!response.ok) { throw new Error(body.error); }
+    if (!response.ok) { throw new Error(body); }
 
     dispatch(requestSuccess());
     return true;
-  } catch (errorMessage) {
-    dispatch(requestFailure(errorMessage));
+  } catch (error) {
+    dispatch(requestFailure(error.message));
     return false;
   }
 };
@@ -79,8 +79,8 @@ const destroyNotepad = ({ notepadId }) => async (dispatch) => {
 
     dispatch(requestSuccess());
     return true;
-  } catch (errorMessage) {
-    dispatch(requestFailure(errorMessage));
+  } catch (error) {
+    dispatch(requestFailure(error.message));
     return false;
   }
 };

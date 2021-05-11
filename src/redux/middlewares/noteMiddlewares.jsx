@@ -8,13 +8,13 @@ const getNote = ({ noteId, notepadId }) => async (dispatch) => {
     const response = await noteAPI.getNote({ noteId, notepadId });
     const body = await response.json();
 
-    if (!response.ok) { throw new Error(body.error); }
+    if (!response.ok) { throw new Error(body); }
 
     dispatch(updateCurrentNote({ title: body.title, content: body.content }));
     dispatch(requestSuccess());
     return true;
-  } catch (errorMessage) {
-    dispatch(requestFailure(errorMessage));
+  } catch (error) {
+    dispatch(requestFailure(error.message));
     return false;
   }
 };
@@ -25,13 +25,13 @@ const createNote = ({ notepadId, title, content }) => async (dispatch) => {
     const response = await noteAPI.createNote({ notepadId, title, content });
     const body = await response.json();
 
-    if (!response.ok) { throw new Error(body.error); }
+    if (!response.ok) { throw new Error(body); }
 
     dispatch(updateCurrentNote({ title: body.title, content: body.content }));
     dispatch(requestSuccess());
     return true;
-  } catch (errorMessage) {
-    dispatch(requestFailure(errorMessage));
+  } catch (error) {
+    dispatch(requestFailure(error.message));
     return false;
   }
 };
@@ -46,13 +46,13 @@ const updateNote = ({
     });
     const body = await response.json();
 
-    if (!response.ok) { throw new Error(body.error); }
+    if (!response.ok) { throw new Error(body); }
 
     dispatch(updateCurrentNote({ title: body.title, content: body.content }));
     dispatch(requestSuccess());
     return true;
-  } catch (errorMessage) {
-    dispatch(requestFailure(errorMessage));
+  } catch (error) {
+    dispatch(requestFailure(error.message));
     return false;
   }
 };
@@ -62,12 +62,12 @@ const destroyNote = ({ notepadId, noteId }) => async (dispatch) => {
     const response = await noteAPI.destroyNote({ notepadId, noteId });
     const body = await response.json();
 
-    if (!response.ok) { throw new Error(body.error); }
+    if (!response.ok) { throw new Error(body); }
 
     dispatch(requestSuccess());
     return true;
-  } catch (errorMessage) {
-    dispatch(requestFailure(errorMessage));
+  } catch (error) {
+    dispatch(requestFailure(error.message));
     return false;
   }
 };
