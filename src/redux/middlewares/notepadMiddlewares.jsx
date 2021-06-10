@@ -54,10 +54,10 @@ const createNotepad = ({ title, userId }) => async (dispatch) => {
   }
 };
 
-const updateNotepad = ({ title, notepadId }) => async (dispatch) => {
+const updateNotepad = ({ title, notepadId, color }) => async (dispatch) => {
   try {
     dispatch(request());
-    const response = await notepadAPI.updateNotepad({ title, notepadId });
+    const response = await notepadAPI.updateNotepad({ title, notepadId, color });
     const body = await response.json();
 
     if (!response.ok) { throw new Error(body.error); }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -21,8 +21,6 @@ import yellowNotepadImage from 'assets/yellowNotepadImage.png';
 const NotepadCard = ({ notepad }) => {
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
-  const [color, setColor] = useState('blue');
-  const [notepadImage, setNotepadImage] = useState(blueNotepadImage);
 
   const notepadImages = {
     red: redNotepadImage,
@@ -38,15 +36,11 @@ const NotepadCard = ({ notepad }) => {
     if (response) { dispatch(reloadCurrentNotepads()); }
   };
 
-  useEffect(() => {
-    setNotepadImage(notepadImages[color]);
-  }, [color]);
-
   return (
     <>
       <Card className="bg-secondary border-0 mb-4" style={{ maxWidth: '18rem', minWidth: '18rem' }}>
         <Link to={`/notepad/${notepad.id}`}>
-          <Card.Img variant="top" src={notepadImage} />
+          <Card.Img variant="top" src={notepadImages[notepad.color]} />
         </Link>
         <Card.Body>
           <Card.Text className="text-center">
@@ -69,7 +63,7 @@ const NotepadCard = ({ notepad }) => {
               removeNotepad={removeNotepad}
             />
 
-            <ColorDropdown setColor={setColor} />
+            <ColorDropdown notepad={notepad} />
           </div>
 
         </Card.Body>
@@ -93,5 +87,6 @@ NotepadCard.propTypes = {
   notepad: PropTypes.shape({
     id: PropTypes.number,
     title: PropTypes.string,
+    color: PropTypes.string,
   }).isRequired,
 };

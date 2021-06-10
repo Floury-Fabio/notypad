@@ -1,11 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { updateNotepad, getNotepads as reloadNotepads } from 'redux/middlewares/notepadMiddlewares';
 import 'styles/ColorBox.scss';
 
-const ColorBox = ({ color, setColor }) => {
-  const swapColor = (event) => {
-    if (event.keyCode === 229 || event.type === 'click') {
-      setColor(color);
+const ColorBox = ({ color, notepad }) => {
+  const dispatch = useDispatch();
+
+  const handleClick = async () => {
+    await dispatch(updateNotepad({ ...notepad, notepadId: notepad.id, color }));
+    await dispatch(reloadNotepads());
+  };
+
+  const handleKey = (e) => {
+    if (e.keyCode === 13) {
+      dispatch(updateNotepad({ ...notepad, notepadId: notepad.id, color }));
     }
   };
 
@@ -17,8 +26,8 @@ const ColorBox = ({ color, setColor }) => {
         tabIndex="0"
         role="button"
         type="button"
-        onClick={swapColor}
-        onKeyDown={swapColor}
+        onClick={handleClick}
+        onKeyDown={handleKey}
       />
     </div>
   );
@@ -31,6 +40,10 @@ ColorBox.defaultProps = {
 };
 
 ColorBox.propTypes = {
+  notepad: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    color: PropTypes.string,
+  }).isRequired,
   color: PropTypes.string,
-  setColor: PropTypes.func.isRequired,
 };

@@ -6,7 +6,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import ColorBox from 'components/ColorBox';
 import ColorMenu from 'components/ColorMenu';
 
-const ColorDropdown = ({ setColor }) => {
+const ColorDropdown = ({ notepad }) => {
   const colors = [
     'blue',
     'green',
@@ -23,8 +23,8 @@ const ColorDropdown = ({ setColor }) => {
           <Dropdown.Item
             as={ColorBox}
             color={color}
-            setColor={setColor}
             key={color}
+            notepad={notepad}
           />
         ))}
       </Dropdown.Menu>
@@ -35,5 +35,9 @@ const ColorDropdown = ({ setColor }) => {
 export default ColorDropdown;
 
 ColorDropdown.propTypes = {
-  setColor: PropTypes.func.isRequired,
+  notepad: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    color: PropTypes.string,
+  }).isRequired,
 };
