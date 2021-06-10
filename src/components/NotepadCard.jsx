@@ -63,7 +63,7 @@ const NotepadCard = ({ notepad }) => {
               removeNotepad={removeNotepad}
             />
 
-            <ColorDropdown notepad={notepad} />
+            <ColorDropdown notepad={notepad} colorsList={Object.keys(notepadImages)} />
           </div>
 
         </Card.Body>
