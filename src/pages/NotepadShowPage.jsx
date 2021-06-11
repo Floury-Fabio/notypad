@@ -15,6 +15,7 @@ const NotepadShowPage = () => {
   const dispatch = useDispatch();
   const currentNotepad = useSelector((state) => state.notepadReducer.currentNotepad);
   const currentNote = useSelector((state) => state.noteReducer.currentNote);
+  const currentNotes = currentNotepad ? currentNotepad.notes : undefined;
 
   const fetchCurrentNotepad = async () => {
     await dispatch(getNotepad({ notepadId }));
@@ -27,9 +28,7 @@ const NotepadShowPage = () => {
 
   return (
     <div className="NotepadShowPage">
-      {currentNotepad
-        ? <NotesList notes={currentNotepad.notes} />
-        : <NotesList notes={[]} />}
+      <NotesList notes={currentNotes} />
       <div className="NotepadShowPage-note-manager">
         <NoteDisplay currentNote={currentNote} />
         <RedactNote currentNote={currentNote} notepadId={notepadId} />

@@ -15,6 +15,7 @@ const NotesList = ({ notes }) => {
       content: '',
     }));
   };
+
   return (
     <div className="NotesList">
       <ul className="NotesList-group list-group">
