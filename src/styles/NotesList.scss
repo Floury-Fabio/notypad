@@ -1,0 +1,17 @@
+.NotesList {
+  background-color: var(--secondary-color);
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 4px;
+  width: 25%;
+}
+
+.NotesList-group {
+  overflow: auto;
+  margin-bottom: 5%;
+  height: 90%;
+}
+
+.NotesList-reset-button {
+  margin: 10px 42% 0px;
+}

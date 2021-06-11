@@ -3,6 +3,8 @@ import { Link, useHistory } from 'react-router-dom';
 import { signOut } from 'redux/middlewares/authMiddlewares';
 import { useDispatch, useSelector } from 'react-redux';
 
+import 'styles/Navbar.scss';
+
 const Navbar = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -16,10 +18,10 @@ const Navbar = () => {
   };
 
   return (
-    <>
-      <h1 className="bg-secondary mb-0 text-center"> Notypad </h1>
-      <nav className="navbar navbar-expand-sm bg-secondary justify-content-center">
-        <ul className="navbar-nav justify-content-center">
+    <div className="Navbar">
+      <h1 className="mb-0 text-center"> Notypad </h1>
+      <nav className="navbar navbar-expand-sm justify-content-center">
+        <ul className="Navbar navbar-nav justify-content-center">
           <li className="nav-item">
             <Link to="/home" className="nav-link"> Home </Link>
           </li>
@@ -45,7 +47,7 @@ const Navbar = () => {
           )}
         </ul>
       </nav>
-    </>
+    </div>
   );
 };
 export default Navbar;

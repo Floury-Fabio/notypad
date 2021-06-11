@@ -11,20 +11,24 @@ import Navbar from 'components/Navbar';
 import AlertComponent from 'components/AlertComponent';
 import PrivateRoute from './PrivateRoute';
 
+import 'styles/App.scss';
+
 const App = () => (
-  <Router>
-    <AlertComponent />
-    <Navbar />
-    <Switch>
-      <Route path="/login" component={SignIn} />
-      <Route path="/register" component={SignUp} />
-      <Route path="/home" component={Home} />
-      <PrivateRoute>
-        <Route path="/notepads" component={NotepadsPage} />
-        <Route path="/notepad/:notepadId" component={NotepadShowPage} />
-      </PrivateRoute>
-    </Switch>
-  </Router>
+  <div className="App">
+    <Router>
+      <AlertComponent />
+      <Navbar />
+      <Switch>
+        <Route path="/login" component={SignIn} />
+        <Route path="/register" component={SignUp} />
+        <Route path="/home" component={Home} />
+        <PrivateRoute>
+          <Route path="/notepads" component={NotepadsPage} />
+          <Route path="/notepad/:notepadId" component={NotepadShowPage} />
+        </PrivateRoute>
+      </Switch>
+    </Router>
+  </div>
 );
 
 export default App;

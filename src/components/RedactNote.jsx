@@ -6,6 +6,8 @@ import { updateCurrentNote } from 'redux/actions/noteActions';
 import searchNoteWithTitle from 'helpers/notepadHelpers';
 import { getNotepad as reloadNotepad } from 'redux/middlewares/notepadMiddlewares';
 
+import 'styles/RedactNote.scss';
+
 const RedactNote = ({ currentNote, notepadId }) => {
   const dispatch = useDispatch();
 
@@ -27,7 +29,7 @@ const RedactNote = ({ currentNote, notepadId }) => {
   };
 
   return (
-    <div className="h-50 bg-secondary mt-2 rounded p-2">
+    <div className="RedactNote">
       <div className="form-group">
         <label htmlFor="title">
           Title
