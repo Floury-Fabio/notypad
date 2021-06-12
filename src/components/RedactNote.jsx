@@ -6,6 +6,8 @@ import { updateCurrentNote } from 'redux/actions/noteActions';
 import searchNoteWithTitle from 'helpers/notepadHelpers';
 import { getNotepad as reloadNotepad } from 'redux/middlewares/notepadMiddlewares';
 
+import 'styles/RedactNote.scss';
+
 const RedactNote = ({ currentNote, notepadId }) => {
   const dispatch = useDispatch();
 
@@ -27,20 +29,20 @@ const RedactNote = ({ currentNote, notepadId }) => {
   };
 
   return (
-    <div className="h-50 bg-secondary mt-2 rounded p-2">
+    <div className="RedactNote">
       <div className="form-group">
         <label htmlFor="title">
           Title
-          <input id="note-title-input" name="title" type="text" className="form-control" placeholder="Title" value={currentNote.title} onChange={saveInput} />
+          <input name="title" type="text" className="form-control RedactNote-title" placeholder="Title" value={currentNote.title} onChange={saveInput} />
         </label>
       </div>
       <div className="form-group">
         <label htmlFor="content">
           Content
-          <textarea id="note-content-input" name="content" className="form-control" placeholder="Content" value={currentNote.content} onChange={saveInput} />
+          <textarea name="content" className="form-control RedactNote-content" placeholder="Content" value={currentNote.content} onChange={saveInput} />
         </label>
       </div>
-      <button id="submit" type="submit" className="btn btn-primary" onClick={submit}>Submit</button>
+      <button type="submit" className="btn btn-primary RedactNote-submit" onClick={submit}>Submit</button>
     </div>
   );
 };
@@ -53,9 +55,9 @@ RedactNote.defaultProps = {
 
 RedactNote.propTypes = {
   currentNote: PropTypes.shape({
-    title: PropTypes.string,
     content: PropTypes.string,
     notepadId: PropTypes.string,
+    title: PropTypes.string,
   }),
   notepadId: PropTypes.number.isRequired,
 };

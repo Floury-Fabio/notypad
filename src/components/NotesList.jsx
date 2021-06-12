@@ -5,6 +5,8 @@ import NoteRow from 'components/NoteRow';
 import { useDispatch } from 'react-redux';
 import { updateCurrentNote } from 'redux/actions/noteActions';
 
+import 'styles/NotesList.scss';
+
 const NotesList = ({ notes }) => {
   const dispatch = useDispatch();
   const resetNote = () => {
@@ -13,12 +15,13 @@ const NotesList = ({ notes }) => {
       content: '',
     }));
   };
+
   return (
-    <div className="w-25 bg-secondary rounded p-1 d-flex flex-column">
-      <ul className="list-group w-100">
+    <div className="NotesList">
+      <ul className="NotesList-group list-group">
         {notes.map((note) => <NoteRow note={note} key={`${note.title} ${note.id}`} />)}
       </ul>
-      <button id="reset" type="submit" className="btn btn-primary mt-auto ml-auto mb-2" onClick={resetNote}>reset</button>
+      <button type="submit" className="NotesList-reset-button btn btn-primary" onClick={resetNote}>reset</button>
     </div>
   );
 };

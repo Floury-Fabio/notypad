@@ -8,11 +8,14 @@ import NotesList from 'components/NotesList';
 import RedactNote from 'components/RedactNote';
 import NoteDisplay from 'components/NoteDisplay';
 
-const NotesPage = () => {
+import 'styles/NotepadShowPage.scss';
+
+const NotepadShowPage = () => {
   const { notepadId } = useParams();
   const dispatch = useDispatch();
   const currentNotepad = useSelector((state) => state.notepadReducer.currentNotepad);
   const currentNote = useSelector((state) => state.noteReducer.currentNote);
+  const currentNotes = currentNotepad ? currentNotepad.notes : undefined;
 
   const fetchCurrentNotepad = async () => {
     await dispatch(getNotepad({ notepadId }));
@@ -24,18 +27,14 @@ const NotesPage = () => {
   }, []);
 
   return (
-    <>
-      <div id="main-container" className="container d-flex p-0 mt-3">
-        {currentNotepad
-          ? <NotesList notes={currentNotepad.notes} />
-          : <NotesList notes={[]} />}
-        <div className="w-75 ml-4 rounded">
-          <NoteDisplay currentNote={currentNote} />
-          <RedactNote currentNote={currentNote} notepadId={notepadId} />
-        </div>
+    <div className="NotepadShowPage">
+      <NotesList notes={currentNotes} />
+      <div className="NotepadShowPage-note-manager">
+        <NoteDisplay currentNote={currentNote} />
+        <RedactNote currentNote={currentNote} notepadId={notepadId} />
       </div>
-    </>
+    </div>
   );
 };
 
-export default NotesPage;
+export default NotepadShowPage;
