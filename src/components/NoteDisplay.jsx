@@ -12,7 +12,7 @@ const NoteDisplay = ({ currentNote }) => {
 
   return (
     <div className="NoteDisplay">
-      <h4>
+      <h4 NoteDisplay-title>
         { currentNote.title }
       </h4>
       <p className="NoteDisplay-content">
