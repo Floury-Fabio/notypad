@@ -12,10 +12,10 @@ const NoteDisplay = ({ currentNote }) => {
 
   return (
     <div className="NoteDisplay">
-      <p>
+      <h4>
         { currentNote.title }
-      </p>
-      <p>
+      </h4>
+      <p className="NoteDisplay-content">
         <MarkdownView markdown={currentNote.content} />
       </p>
     </div>
