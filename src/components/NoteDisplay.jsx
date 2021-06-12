@@ -30,8 +30,8 @@ NoteDisplay.defaultProps = {
 
 NoteDisplay.propTypes = {
   currentNote: PropTypes.shape({
-    title: PropTypes.string,
     content: PropTypes.string,
     notepadId: PropTypes.string,
+    title: PropTypes.string,
   }),
 };
