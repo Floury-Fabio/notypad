@@ -1,8 +1,22 @@
 .RedactNote {
+  padding: 30px 0 0 30px;
   background-color: var(--secondary-color);
   border-radius: 4px;
 
   height: 48%;
   box-sizing: border-box;
   margin-top: 2%;
+}
+
+.RedactNote-title {
+  width: 50em !important;
+}
+
+.RedactNote-content {
+  width: 50rem !important;
+  height: 8rem !important;
+}
+
+.RedactNote-submit {
+  margin-left: 22rem;
 }
